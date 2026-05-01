@@ -453,6 +453,149 @@
     .face.back { transform: none; margin-top: 10px; }
   }
 
+  /* Mode toggle */
+  .mode-toggle {
+    margin-top: 16px;
+    display: flex;
+    gap: 0;
+    justify-content: center;
+  }
+  .mode-toggle button {
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+    padding: 8px 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .mode-toggle button:first-child { border-radius: 2px 0 0 2px; border-right: none; }
+  .mode-toggle button:last-child  { border-radius: 0 2px 2px 0; }
+  .mode-toggle button.active {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  /* Scroll / Study view */
+  #scroll-view { display: none; }
+  .scroll-topic {
+    max-width: 860px;
+    margin: 0 auto 64px;
+  }
+  .scroll-topic-header {
+    border-bottom: 2px solid var(--rule);
+    padding: 36px 0 16px;
+    margin-bottom: 28px;
+  }
+  .scroll-topic-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .scroll-topic-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 700;
+    margin-top: 6px;
+    color: var(--ink);
+  }
+  .scroll-topic-blurb {
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-top: 8px;
+    font-size: 16px;
+    max-width: 680px;
+  }
+  .scroll-qa {
+    margin-bottom: 28px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px -6px var(--shadow);
+  }
+  .scroll-q {
+    padding: 20px 28px 18px;
+    background: #fcf6e8;
+    background-image: repeating-linear-gradient(180deg, transparent 0, transparent 31px, rgba(26,22,18,0.05) 32px);
+    border-bottom: 1px dashed rgba(26,22,18,0.2);
+    position: relative;
+  }
+  .scroll-q::before {
+    content: "";
+    position: absolute;
+    left: 56px; top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(138,28,28,0.2);
+  }
+  @media (max-width: 600px) { .scroll-q::before { display: none; } }
+  .scroll-qnum {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .scroll-q-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .scroll-q-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(17px, 1.8vw, 21px);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .scroll-a {
+    padding: 20px 28px 24px;
+    background: #f6ecd6;
+  }
+  .scroll-a-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .scroll-a .body {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--ink);
+  }
+  .scroll-a .body p { margin-bottom: 10px; }
+  .scroll-a .body strong { color: var(--accent); font-weight: 600; }
+  .scroll-a .body em { color: var(--ink-soft); }
+  .scroll-a .body ul, .scroll-a .body ol { margin: 8px 0 10px 22px; }
+  .scroll-a .body li { margin-bottom: 5px; }
+  .scroll-a .body .quote {
+    border-left: 3px solid var(--accent);
+    padding: 6px 0 6px 14px;
+    margin: 12px 0;
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+  .scroll-a .body .keyterm {
+    background: rgba(184,137,58,0.18);
+    padding: 1px 4px;
+    border-radius: 2px;
+    font-weight: 600;
+  }
+
   /* Keyboard shortcut hint */
   .keys {
     margin-top: 14px;
@@ -480,7 +623,11 @@
   <div class="eyebrow">COL 200 · Spring 2026 · Prof. Shaun Irlam · BITS Pilani</div>
   <h1>Democracy &amp; Justice <em>in America</em></h1>
   <div class="sub">A complete flashcard companion to the Final Exam Checklist</div>
-  <div class="meta">10 TOPICS · 110+ CARDS · CLICK TO FLIP</div>
+  <div class="meta">10 TOPICS · 110+ CARDS</div>
+  <div class="mode-toggle">
+    <button id="mode-card-btn" class="active" onclick="setMode('card')">⊞ Flashcard</button>
+    <button id="mode-scroll-btn" onclick="setMode('scroll')">☰ Scroll / Study</button>
+  </div>
 </header>
 
 <div class="layout">
@@ -490,6 +637,7 @@
   </nav>
 
   <main>
+  <div id="card-view">
     <div class="topic-header">
       <div class="topic-num" id="topic-num">Topic 01</div>
       <h2 class="topic-title" id="topic-title">Loading…</h2>
@@ -526,6 +674,8 @@
       <button onclick="toggleIndex()" id="index-btn">Show all Q&amp;A on this topic</button>
     </div>
     <div class="index-view" id="index-view"></div>
+  </div><!-- #card-view -->
+  <div id="scroll-view"></div>
   </main>
 </div>
 
@@ -1118,7 +1268,51 @@ function prev() {
 function goToTopic(i) {
   currentTopic = i;
   currentCard = 0;
-  render();
+  if (scrollMode) {
+    document.querySelectorAll('nav.toc button').forEach(b => b.classList.remove('active'));
+    document.getElementById(`toc-${i}`)?.classList.add('active');
+    const el = document.getElementById(`scroll-topic-${i}`);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else {
+    render();
+  }
+}
+
+let scrollMode = false;
+
+function setMode(mode) {
+  scrollMode = (mode === 'scroll');
+  document.getElementById('card-view').style.display = scrollMode ? 'none' : '';
+  document.getElementById('scroll-view').style.display = scrollMode ? 'block' : 'none';
+  document.getElementById('mode-card-btn').classList.toggle('active', !scrollMode);
+  document.getElementById('mode-scroll-btn').classList.toggle('active', scrollMode);
+  if (scrollMode) renderScrollView();
+}
+
+function renderScrollView() {
+  const view = document.getElementById('scroll-view');
+  view.innerHTML = TOPICS.map((t, ti) => `
+    <section class="scroll-topic" id="scroll-topic-${ti}">
+      <div class="scroll-topic-header">
+        <div class="scroll-topic-num">Topic ${String(t.id).padStart(2,'0')} &middot; ${t.cards.length} cards</div>
+        <div class="scroll-topic-title">${t.title}</div>
+        <div class="scroll-topic-blurb">${t.blurb}</div>
+      </div>
+      ${t.cards.map((c, ci) => `
+        <div class="scroll-qa">
+          <div class="scroll-q">
+            <span class="scroll-qnum">Q${String(ci+1).padStart(2,'0')}</span>
+            <span class="scroll-q-label">Question</span>
+            <div class="scroll-q-text">${c.q}</div>
+          </div>
+          <div class="scroll-a">
+            <span class="scroll-a-label">Answer</span>
+            <div class="body">${c.a}</div>
+          </div>
+        </div>
+      `).join('')}
+    </section>
+  `).join('');
 }
 
 function toggleIndex() {
