@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COL 200 — Final Exam Flashcards | Democracy & Justice in America</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f4ede0;
+    --paper-deep: #ebe1cf;
+    --ink: #1a1612;
+    --ink-soft: #3d342a;
+    --rule: #2a201a;
+    --accent: #8a1c1c;       /* deep crimson */
+    --accent-soft: #b85a3a;  /* burnt sienna */
+    --gold: #b8893a;
+    --shadow: rgba(26, 22, 18, 0.18);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+  body {
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(184, 137, 58, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(138, 28, 28, 0.05) 0%, transparent 40%),
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(26, 22, 18, 0.012) 2px, rgba(26, 22, 18, 0.012) 4px);
+  }
+  .grain::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.4'/></svg>");
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+  }
+  header {
+    border-bottom: 2px solid var(--rule);
+    padding: 28px 5vw 22px;
+    text-align: center;
+    background: linear-gradient(180deg, var(--paper-deep), var(--paper));
+    position: relative;
+    z-index: 2;
+  }
+  header .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(28px, 4.5vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  header h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  header .sub {
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-top: 6px;
+    font-size: 17px;
+  }
+  header .meta {
+    margin-top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.15em;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 0;
+    position: relative;
+    z-index: 2;
+  }
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+
+  nav.toc {
+    border-right: 1px solid var(--rule);
+    padding: 26px 22px;
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  @media (max-width: 900px) {
+    nav.toc { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--rule); }
+  }
+  nav.toc h2 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--ink-soft);
+  }
+  nav.toc ol {
+    list-style: none;
+    counter-reset: topic;
+  }
+  nav.toc li {
+    counter-increment: topic;
+    margin-bottom: 4px;
+  }
+  nav.toc button {
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+    padding: 8px 10px 8px 38px;
+    cursor: pointer;
+    font-family: 'Crimson Pro', serif;
+    font-size: 16px;
+    color: var(--ink-soft);
+    position: relative;
+    transition: all 0.2s ease;
+    border-radius: 2px;
+    line-height: 1.3;
+  }
+  nav.toc button::before {
+    content: counter(topic, decimal-leading-zero);
+    position: absolute;
+    left: 8px;
+    top: 9px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  nav.toc button:hover {
+    background: var(--paper-deep);
+    color: var(--ink);
+  }
+  nav.toc button.active {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  nav.toc button.active::before { color: var(--gold); }
+
+  main {
+    padding: 36px clamp(20px, 4vw, 56px) 80px;
+    min-height: 100vh;
+  }
+  .topic-header {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 16px;
+    margin-bottom: 28px;
+  }
+  .topic-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .topic-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-top: 6px;
+    color: var(--ink);
+  }
+  .topic-blurb {
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-top: 10px;
+    max-width: 700px;
+    font-size: 17px;
+  }
+
+  /* Card stage */
+  .stage {
+    perspective: 2000px;
+    margin: 30px auto;
+    max-width: 760px;
+  }
+  .card {
+    position: relative;
+    width: 100%;
+    min-height: 380px;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    cursor: pointer;
+  }
+  .card.flipped { transform: rotateY(180deg); }
+  .face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    background: #fcf6e8;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 36px 40px 60px;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.6) inset,
+      0 12px 28px -8px var(--shadow),
+      0 2px 6px var(--shadow);
+    overflow-y: auto;
+    background-image:
+      linear-gradient(0deg, transparent calc(100% - 1px), rgba(138, 28, 28, 0.08) 100%),
+      repeating-linear-gradient(180deg, transparent 0, transparent 31px, rgba(26, 22, 18, 0.05) 32px);
+  }
+  .face.back {
+    transform: rotateY(180deg);
+    background: #f6ecd6;
+  }
+  .face::before {
+    content: "";
+    position: absolute;
+    left: 60px; top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(138, 28, 28, 0.25);
+  }
+  @media (max-width: 600px) {
+    .face { padding: 24px 22px 50px; }
+    .face::before { left: 40px; }
+  }
+  .face .corner {
+    position: absolute;
+    top: 14px; right: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .face .corner-l {
+    position: absolute;
+    top: 14px; left: 78px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  @media (max-width: 600px) {
+    .face .corner-l { left: 56px; }
+  }
+  .face h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(22px, 2.6vw, 28px);
+    line-height: 1.2;
+    margin-top: 36px;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .face .q-mark {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--accent);
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .face .body {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .face .body p { margin-bottom: 12px; }
+  .face .body strong { color: var(--accent); font-weight: 600; }
+  .face .body em { color: var(--ink-soft); }
+  .face .body ul { margin: 10px 0 12px 20px; }
+  .face .body li { margin-bottom: 6px; }
+  .face .body .quote {
+    border-left: 3px solid var(--accent);
+    padding: 6px 0 6px 14px;
+    margin: 12px 0;
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
+  .face .body .keyterm {
+    background: rgba(184, 137, 58, 0.18);
+    padding: 1px 4px;
+    border-radius: 2px;
+    font-weight: 600;
+  }
+  .face .flip-hint {
+    position: absolute;
+    bottom: 16px; right: 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .face .flip-hint::before {
+    content: "↻ ";
+  }
+
+  /* Controls */
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 24px;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+  }
+  .controls button {
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 12px 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 2px;
+  }
+  .controls button:hover:not(:disabled) {
+    background: var(--accent);
+    transform: translateY(-1px);
+  }
+  .controls button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+  .progress {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--ink-soft);
+    flex-grow: 1;
+    text-align: center;
+    font-size: 16px;
+  }
+  .progress strong {
+    font-style: normal;
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 22px;
+  }
+
+  /* Index list view */
+  .index-toggle {
+    margin: 30px auto 0;
+    max-width: 760px;
+    text-align: center;
+  }
+  .index-toggle button {
+    background: none;
+    border: 1px solid var(--rule);
+    padding: 8px 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 2px;
+  }
+  .index-toggle button:hover { background: var(--paper-deep); color: var(--ink); }
+
+  .index-view {
+    max-width: 900px;
+    margin: 30px auto;
+    display: none;
+  }
+  .index-view.show { display: block; }
+  .index-view .ix-card {
+    border-bottom: 1px dashed var(--ink-soft);
+    padding: 14px 0;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .index-view .ix-card:hover { background: var(--paper-deep); }
+  .index-view .ix-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+  }
+  .index-view .ix-q {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .index-view .ix-a {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    position: relative;
+    z-index: 2;
+  }
+  footer .ornament {
+    color: var(--accent);
+    font-size: 14px;
+    margin: 0 12px;
+  }
+
+  /* Print styles for studying offline */
+  @media print {
+    nav.toc, .controls, .index-toggle, header .meta { display: none; }
+    .layout { grid-template-columns: 1fr; }
+    .card { transform: none !important; }
+    .face { position: static; backface-visibility: visible; page-break-inside: avoid; }
+    .face.back { transform: none; margin-top: 10px; }
+  }
+
+  /* Keyboard shortcut hint */
+  .keys {
+    margin-top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-soft);
+    text-align: center;
+    letter-spacing: 0.15em;
+    opacity: 0.7;
+  }
+  .keys kbd {
+    background: var(--paper-deep);
+    border: 1px solid var(--ink-soft);
+    padding: 1px 6px;
+    border-radius: 2px;
+    font-family: inherit;
+    font-size: 10px;
+    margin: 0 2px;
+  }
+</style>
+</head>
+<body class="grain">
+
+<header>
+  <div class="eyebrow">COL 200 · Spring 2026 · Prof. Shaun Irlam · BITS Pilani</div>
+  <h1>Democracy &amp; Justice <em>in America</em></h1>
+  <div class="sub">A complete flashcard companion to the Final Exam Checklist</div>
+  <div class="meta">10 TOPICS · 110+ CARDS · CLICK TO FLIP</div>
+</header>
+
+<div class="layout">
+  <nav class="toc">
+    <h2>Topics</h2>
+    <ol id="toc-list"></ol>
+  </nav>
+
+  <main>
+    <div class="topic-header">
+      <div class="topic-num" id="topic-num">Topic 01</div>
+      <h2 class="topic-title" id="topic-title">Loading…</h2>
+      <p class="topic-blurb" id="topic-blurb"></p>
+    </div>
+
+    <div class="stage">
+      <div class="card" id="card" onclick="flip()">
+        <div class="face front">
+          <span class="corner-l" id="card-pos-front">1 / 1</span>
+          <span class="corner">QUESTION</span>
+          <h3 id="front-text">Click to begin</h3>
+          <span class="flip-hint">Tap to reveal</span>
+        </div>
+        <div class="face back">
+          <span class="corner-l" id="card-pos-back">1 / 1</span>
+          <span class="corner">ANSWER</span>
+          <div class="body" id="back-text"></div>
+          <span class="flip-hint">Tap to flip back</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button onclick="prev()" id="prev-btn">← Prev</button>
+      <div class="progress"><strong id="card-num">1</strong> &nbsp;of&nbsp; <span id="card-total">1</span></div>
+      <button onclick="next()" id="next-btn">Next →</button>
+    </div>
+    <div class="keys">
+      <kbd>←</kbd> prev &nbsp;·&nbsp; <kbd>→</kbd> next &nbsp;·&nbsp; <kbd>space</kbd> flip
+    </div>
+
+    <div class="index-toggle">
+      <button onclick="toggleIndex()" id="index-btn">Show all Q&amp;A on this topic</button>
+    </div>
+    <div class="index-view" id="index-view"></div>
+  </main>
+</div>
+
+<footer>
+  Good luck on your exam <span class="ornament">❦</span> Stay calm, cite carefully <span class="ornament">❦</span> May 1, 2026
+</footer>
+
+<script>
+// ============================================================
+//  FLASHCARD DATA — COL 200 Final Exam
+// ============================================================
+const TOPICS = [
+{
+  id: 1,
+  title: "Lincoln's First & Second Inaugural Addresses",
+  short: "Lincoln · Inaugurals",
+  blurb: "Two speeches that bookend the Civil War — March 1861 (war beginning) and March 1865 (war ending). Together they trace Lincoln's evolving thought on Union, slavery, and national reconciliation.",
+  cards: [
+    {
+      q: "When was Lincoln's First Inaugural Address delivered, and what was the political situation?",
+      a: "<strong>Date:</strong> March 4, 1861. <p>By inauguration day, <strong>seven Southern states had already seceded</strong> from the Union (South Carolina was first, in December 1860, followed by Mississippi, Florida, Alabama, Georgia, Louisiana, and Texas) and had formed the <span class='keyterm'>Confederate States of America</span> in February 1861. The country teetered on the edge of civil war. Fort Sumter would be attacked just weeks later, on April 12, 1861.</p><p>Lincoln had won the 1860 election with under 40% of the popular vote and was not even on the ballot in most Southern states. His task in the speech was to deter further secession, reassure the South, and articulate a constitutional case for preserving the Union.</p>"
+    },
+    {
+      q: "What was Lincoln's position on slavery in the First Inaugural?",
+      a: "<p>Lincoln offered a careful, lawyerly stance: <strong>he would not interfere with slavery where it already existed.</strong> He quoted his earlier speeches: <em>'I have no purpose, directly or indirectly, to interfere with the institution of slavery in the States where it exists. I believe I have no lawful right to do so, and I have no inclination to do so.'</em></p><p>However, he firmly opposed the <strong>extension of slavery</strong> into new territories, the position on which the Republican Party was founded. He also pledged to enforce the Fugitive Slave Clause.</p><p>The speech tried to thread a needle — denying Southerners' fears that he was an abolitionist, while denying them any right to leave the Union.</p>"
+    },
+    {
+      q: "What was Lincoln's central constitutional argument about secession?",
+      a: "<p>Lincoln argued that <strong>the Union is perpetual</strong> and that secession is legally impossible. His reasoning:</p><ul><li>The Union is older than the Constitution — it dates from the Articles of Association of 1774.</li><li>The Constitution's preamble aims 'to form a more perfect Union' — and a Union that could be unilaterally dissolved would be <em>less</em> perfect than the previous one.</li><li>No government has ever provided in its organic law for its own termination.</li><li>Therefore, <strong>'no State, upon its own mere motion, can lawfully get out of the Union.'</strong></li></ul><p>From this it followed that acts of secession were legally void, and that violence in support of them was insurrection.</p>"
+    },
+    {
+      q: "What is the famous closing image of the First Inaugural?",
+      a: "<p>The speech ends with one of the most lyrical passages Lincoln ever wrote — drafted with help from William Seward, then refined into Lincoln's voice:</p><div class='quote'>The mystic chords of memory, stretching from every battlefield and patriot grave to every living heart and hearthstone all over this broad land, will yet swell the chorus of the Union, when again touched, as surely they will be, by the better angels of our nature.</div><p>Two phrases are commonly tested: <strong>'mystic chords of memory'</strong> and <strong>'the better angels of our nature.'</strong></p><p>Just before this passage Lincoln says, <em>'We are not enemies, but friends. We must not be enemies.'</em> The closing is an appeal to a shared national past as a foundation for reconciliation.</p>"
+    },
+    {
+      q: "When was the Second Inaugural Address delivered, and what was happening?",
+      a: "<strong>Date:</strong> March 4, 1865.<p>The Civil War was nearly over. Sherman had completed his March to the Sea (Savannah fell December 1864). Lee would surrender at Appomattox just <strong>five weeks later</strong> (April 9, 1865). Lincoln himself would be assassinated by John Wilkes Booth at Ford's Theatre on <strong>April 14, 1865</strong> — only 41 days after delivering this address.</p><p>The war had cost roughly 750,000 American lives. Lincoln, re-elected in November 1864 over Democrat George McClellan, was now turning the country's attention to <strong>Reconstruction</strong>.</p>"
+    },
+    {
+      q: "What does Lincoln identify as the cause of the Civil War in the Second Inaugural?",
+      a: "<p>Unequivocally: <strong>slavery.</strong> Lincoln states that 'slaves constituted a peculiar and powerful interest. All knew that this interest was, somehow, the cause of the war.'</p><p>This is striking. By 1865 he is willing to say plainly what was politically impossible to say in 1861. He frames the entire war as a moral reckoning — a divine judgment on the nation for the sin of slavery, in which both North and South are implicated:</p><div class='quote'>If God wills that it continue, until all the wealth piled by the bondsman's two hundred and fifty years of unrequited toil shall be sunk, and until every drop of blood drawn with the lash, shall be paid by another drawn with the sword, as was said three thousand years ago, so still it must be said 'the judgments of the Lord, are true and righteous altogether.'</div>"
+    },
+    {
+      q: "What is the religious / theological character of the Second Inaugural?",
+      a: "<p>The speech is <strong>essentially a sermon.</strong> Lincoln invokes God 14 times, quotes the Bible four times, and treats the war as a providential event:</p><ul><li>Both sides 'read the same Bible, and pray to the same God; and each invokes His aid against the other.'</li><li>Lincoln is humble: <strong>'The prayers of both could not be answered; that of neither has been answered fully.'</strong></li><li>He refuses to claim God's favor for the North — a remarkable rhetorical choice given victory was at hand.</li></ul><p>Frederick Douglass, who attended, called it <em>'a sacred effort.'</em> The speech is short — only about 700 words — but is widely regarded, along with the Gettysburg Address, as one of Lincoln's two finest.</p>"
+    },
+    {
+      q: "What is the most quoted line from the Second Inaugural, and what does it argue?",
+      a: "<div class='quote'>With malice toward none, with charity for all, with firmness in the right as God gives us to see the right, let us strive on to finish the work we are in; to bind up the nation's wounds; to care for him who shall have borne the battle, and for his widow, and his orphan — to do all which may achieve and cherish a just and lasting peace, among ourselves, and with all nations.</div><p>This closing paragraph announces a vision of <strong>Reconstruction without vengeance.</strong> Lincoln is asking a victorious North not to punish the South, but to heal it. The line <strong>'to care for him who shall have borne the battle, and for his widow, and his orphan'</strong> is now the official mission statement of the U.S. Department of Veterans Affairs.</p><p>Lincoln's assassination just weeks later meant a far harsher Reconstruction unfolded under his successor Andrew Johnson and Radical Republicans in Congress.</p>"
+    },
+    {
+      q: "How did Lincoln's view of the Union and slavery evolve between the two Inaugurals?",
+      a: "<p>The shift over four years is dramatic and is a frequent essay question.</p><p><strong>First Inaugural (1861):</strong></p><ul><li>Lawyerly, defensive, conciliatory toward the South.</li><li>Slavery: protected where it exists, only bars its expansion.</li><li>Frames the conflict as constitutional (perpetual Union).</li><li>Ends with hope for reconciliation through 'mystic chords of memory.'</li></ul><p><strong>Second Inaugural (1865):</strong></p><ul><li>Theological, prophetic, mournful.</li><li>Slavery: openly named as the cause of the war and a national sin.</li><li>Frames the conflict as moral and providential.</li><li>Ends with 'malice toward none' — reconciliation through justice and care.</li></ul><p>The arc moves from <em>law</em> to <em>conscience</em>; from <em>preserving</em> the Union to <em>redeeming</em> it.</p>"
+    },
+    {
+      q: "What is the relationship between the Inaugurals and the Emancipation Proclamation / 13th Amendment?",
+      a: "<p>The two speeches frame Lincoln's wartime trajectory on slavery, with key acts in between:</p><ul><li><strong>September 22, 1862</strong> — Preliminary Emancipation Proclamation issued after the Battle of Antietam.</li><li><strong>January 1, 1863</strong> — Emancipation Proclamation takes effect, freeing slaves in Confederate-held territory (a war measure, limited in scope).</li><li><strong>November 19, 1863</strong> — Gettysburg Address reframes the war as 'a new birth of freedom.'</li><li><strong>January 31, 1865</strong> — 13th Amendment passes Congress (just weeks before the Second Inaugural).</li><li><strong>December 6, 1865</strong> — 13th Amendment ratified, eight months after Lincoln's death.</li></ul><p>The First Inaugural's promise <em>not</em> to touch slavery and the Second's framing of slavery as a national sin demanding atonement bracket the most consequential policy reversal in American history.</p>"
+    }
+  ]
+},
+{
+  id: 2,
+  title: "The Gettysburg Address",
+  short: "Gettysburg Address",
+  blurb: "Just 272 words, delivered in roughly two minutes on November 19, 1863 — and the most famous reframing of the American experiment in U.S. history.",
+  cards: [
+    {
+      q: "When and where was the Gettysburg Address delivered, and on what occasion?",
+      a: "<strong>Date:</strong> November 19, 1863.<br><strong>Place:</strong> Gettysburg, Pennsylvania.<p>The occasion was the <strong>dedication of the Soldiers' National Cemetery</strong>, on the site of the Battle of Gettysburg — fought July 1–3, 1863. That battle, the bloodiest of the Civil War (about 51,000 casualties on both sides), was a Union victory and a turning point in the war.</p><p>Lincoln was not the day's main speaker. The featured orator was <strong>Edward Everett</strong>, former Senator and President of Harvard, who delivered a 13,607-word, two-hour speech. Lincoln spoke afterward for about <strong>two minutes — 272 words</strong>. Everett later wrote to Lincoln: <em>'I should be glad if I could flatter myself that I came as near to the central idea of the occasion in two hours as you did in two minutes.'</em></p>"
+    },
+    {
+      q: "What does 'Four score and seven years ago' refer to?",
+      a: "<p>'Four score and seven' = 4×20 + 7 = <strong>87 years</strong>.</p><p>1863 − 87 = <strong>1776</strong>, the year of the Declaration of Independence.</p><p>This is rhetorically crucial. Lincoln deliberately dates the founding of the nation not to the <strong>Constitution (1787)</strong>, which was a compromise document that protected slavery, but to the <strong>Declaration</strong>, which proclaimed that 'all men are created equal.'</p><p>By choosing 1776, Lincoln places equality, not federal compromise, at the heart of American identity. This is a quietly revolutionary act of historical reframing.</p>"
+    },
+    {
+      q: "What is the opening proposition of the Gettysburg Address?",
+      a: "<div class='quote'>Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.</div><p>Two key words to memorize:</p><ul><li><strong>Conceived</strong> — biological/birth metaphor; the nation is alive.</li><li><strong>Dedicated</strong> — the nation is committed to a <em>proposition</em>, an idea, not a bloodline or territory.</li></ul><p>Lincoln calls the equality of all men a <strong>'proposition'</strong> — a Euclidean term for something that must be proved or tested. The Civil War, he argues, is precisely that test.</p>"
+    },
+    {
+      q: "What is the central question of the speech, and how does it reframe the Civil War?",
+      a: "<div class='quote'>Now we are engaged in a great civil war, testing whether that nation, or any nation so conceived and so dedicated, can long endure.</div><p>The war is no longer (only) about preserving the Union as a political fact. It is a test of whether <strong>any government founded on equality</strong> can survive.</p><p>This globalizes the Civil War. America's struggle becomes a struggle for all democratic experiments anywhere. If the Union loses, the very <em>idea</em> of self-government fails — not just in America, but in principle.</p><p>This is also a sharp answer to the secessionists, who claimed the nation was a contract between states; Lincoln says it is a <em>proposition</em> dedicated to equality.</p>"
+    },
+    {
+      q: "What does Lincoln mean by 'we cannot dedicate—we cannot consecrate—we cannot hallow this ground'?",
+      a: "<div class='quote'>The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract.</div><p>Lincoln performs a striking reversal. Normally, a dedication ceremony <em>makes</em> the ground sacred. He says: the ground is <strong>already sacred</strong> because of the soldiers who fought and died there. The living cannot bless it; the dead have done that.</p><p>The work that remains is therefore not for the dead but <strong>for the living</strong> — to finish 'the great task remaining before us.'</p><p>Note the triple anaphora: <em>dedicate · consecrate · hallow</em>. Religious language for a public ceremony — making the speech, like the Second Inaugural, partly liturgical.</p>"
+    },
+    {
+      q: "What is 'a new birth of freedom,' and why is it important?",
+      a: "<div class='quote'>This nation, under God, shall have a new birth of freedom — and that government of the people, by the people, for the people, shall not perish from the earth.</div><p><strong>'A new birth of freedom'</strong> is the speech's revolutionary core. It implies the old America — the one that protected slavery — must die so a new one can be born. The Civil War is therefore not just a defense of the existing nation; it is a <strong>refounding</strong>.</p><p>Some historians (notably Garry Wills, in <em>Lincoln at Gettysburg</em>, 1992) argue this speech effectively rewrote the Constitution by importing the Declaration's promise of equality into the founding charter. After Gettysburg, Americans would never again read the Constitution apart from the Declaration.</p>"
+    },
+    {
+      q: "What is the famous 'government of the people' formulation, and where did Lincoln get it?",
+      a: "<div class='quote'>...government of the people, by the people, for the people, shall not perish from the earth.</div><p>This triple structure defines democratic government as <strong>belonging to</strong> the people, <strong>operated by</strong> the people, and <strong>existing for</strong> the people.</p><p>Lincoln did not invent the phrase. It echoes <strong>John Wycliffe</strong>'s 14th-century preface to the English Bible (a 'government of the people, for the people, by the people') and language used by the abolitionist preacher <strong>Theodore Parker</strong>, whom Lincoln read closely.</p><p>Lincoln's contribution was to fuse the formula to the cause of equality and to a war for national survival, making it the canonical American definition of democracy.</p>"
+    },
+    {
+      q: "Why is the Gettysburg Address considered a 'reframing' of the war's meaning?",
+      a: "<p>This is a common essay prompt. Three layers of reframing:</p><ul><li><strong>From Union to Equality.</strong> Before Gettysburg, Lincoln defended the war as a defense of the Union. Now he says the war is about whether a nation 'dedicated to the proposition that all men are created equal' can endure.</li><li><strong>From Constitution to Declaration.</strong> Lincoln roots America in 1776, not 1787 — privileging equality over compromise.</li><li><strong>From preservation to refounding.</strong> 'A new birth of freedom' implies the old slaveholding republic must die. The war is not just a defense but a regeneration.</li></ul><p>This is why the Address is paired with the Second Inaugural and the Reconstruction Amendments: together they form what some scholars call the <strong>'Second Founding'</strong> of the United States.</p>"
+    }
+  ]
+},
+{
+  id: 3,
+  title: "Dred Scott v. Sandford & the Reconstruction Amendments (13–15)",
+  short: "Dred Scott + 13/14/15",
+  blurb: "The most infamous decision in U.S. Supreme Court history (1857) — and the three constitutional amendments (1865, 1868, 1870) that overturned it and remade American citizenship.",
+  cards: [
+    {
+      q: "Who was Dred Scott?",
+      a: "<p><strong>Dred Scott</strong> (c. 1799–1858) was an enslaved African American man owned by an army surgeon, Dr. John Emerson. Emerson took Scott to live for years in <strong>Illinois (a free state)</strong> and the <strong>Wisconsin Territory (free under the Missouri Compromise of 1820)</strong>.</p><p>After Emerson's death, Scott sued for his freedom in 1846 in Missouri courts, arguing that his residence on free soil had made him free. His wife Harriet Scott was a co-plaintiff. The case eventually reached the U.S. Supreme Court as <em>Dred Scott v. Sandford</em> (the defendant's name was actually 'Sanford' — the Court misspelled it).</p>"
+    },
+    {
+      q: "When was Dred Scott v. Sandford decided, and by whom?",
+      a: "<strong>Date:</strong> March 6, 1857.<br><strong>Vote:</strong> 7–2.<br><strong>Author of opinion:</strong> Chief Justice <strong>Roger B. Taney</strong>, a Marylander and former slaveholder.<p>The case was decided just two days after President James Buchanan's inauguration. Buchanan had privately lobbied a Northern justice to vote with the Southern majority, hoping a sweeping decision would settle the slavery question. It did the opposite — accelerating the slide toward civil war.</p><p>The dissenters were Justices <strong>Benjamin Curtis</strong> and <strong>John McLean</strong>. Curtis's dissent is one of the most powerful in Supreme Court history; he resigned from the Court shortly after.</p>"
+    },
+    {
+      q: "What were the three main holdings of Dred Scott v. Sandford?",
+      a: "<p>Taney's opinion made <strong>three sweeping rulings</strong>, each more inflammatory than the last:</p><ol><li><strong>African Americans, free or enslaved, could never be U.S. citizens.</strong> They were, in Taney's notorious phrase, <em>'beings of an inferior order ... with no rights which the white man was bound to respect.'</em> Therefore, Scott had no standing to sue in federal court.</li><li><strong>Congress had no power to ban slavery in federal territories.</strong> The <strong>Missouri Compromise of 1820</strong> (which had banned slavery north of 36°30′) was unconstitutional — the first time since <em>Marbury v. Madison</em> (1803) that the Court struck down a federal statute.</li><li><strong>Slaveholders could take enslaved people into any territory.</strong> Slavery, in effect, was nationalized; no federal or territorial government could outlaw it.</li></ol>"
+    },
+    {
+      q: "What was Taney's reasoning for excluding Black Americans from citizenship?",
+      a: "<p>Taney argued that at the time of the Constitution's ratification (1787), Black people 'had been regarded as beings of an inferior order' and were <em>'so far inferior that they had no rights which the white man was bound to respect.'</em></p><p>He claimed the Founders never intended Black people — even free Black people — to be 'citizens' under the Constitution. Therefore, the word 'citizen' in Article III's diversity-of-citizenship clause did not include them.</p><p>This was historically false. <strong>Justice Curtis's dissent</strong> demonstrated that free Black men had voted in five of the thirteen states that ratified the Constitution and were considered citizens of those states. Curtis showed Taney was simply rewriting history to justify exclusion.</p>"
+    },
+    {
+      q: "What were the political consequences of Dred Scott?",
+      a: "<p>The decision <strong>backfired catastrophically</strong> for those hoping it would settle the slavery question.</p><ul><li>It enraged Northerners, who saw it as a 'Slave Power conspiracy' to nationalize slavery.</li><li>It split the Democratic Party along sectional lines.</li><li>It boosted the new <strong>Republican Party</strong>, founded in 1854 to oppose slavery's extension. Lincoln referenced it repeatedly in his 1858 Lincoln–Douglas debates and in his 'House Divided' speech.</li><li>It made compromise impossible — if Congress could not regulate slavery in territories, the political mechanism for managing slavery's expansion was gone.</li></ul><p>Most historians regard <em>Dred Scott</em> as a major <strong>cause of the Civil War</strong>. It is universally treated as one of the worst decisions in Supreme Court history.</p>"
+    },
+    {
+      q: "What is the 13th Amendment, when was it ratified, and what does it do?",
+      a: "<strong>Ratified:</strong> December 6, 1865 (eight months after Lincoln's assassination).<p><strong>Text:</strong> <em>'Neither slavery nor involuntary servitude, except as a punishment for crime whereof the party shall have been duly convicted, shall exist within the United States, or any place subject to their jurisdiction.'</em></p><p><strong>Effect:</strong> Abolished slavery throughout the United States — completing what the Emancipation Proclamation began. The Proclamation (1863) had freed only enslaved people in Confederate territory; the 13th Amendment freed everyone, including those in border states.</p><p><strong>The Punishment Clause</strong>: The exception 'except as a punishment for crime' has been used historically (and in critiques today, e.g., Ava DuVernay's documentary <em>13th</em>) to argue that mass incarceration and convict leasing have functioned as a form of legalized servitude.</p>"
+    },
+    {
+      q: "What is the 14th Amendment, when was it ratified, and what are its key clauses?",
+      a: "<strong>Ratified:</strong> July 9, 1868.<p>The most important and most-litigated amendment. It directly overturns <em>Dred Scott</em> and contains four key provisions:</p><ol><li><strong>Citizenship Clause:</strong> 'All persons born or naturalized in the United States ... are citizens of the United States and of the State wherein they reside.' This explicitly makes formerly enslaved people citizens — overturning Taney's central holding.</li><li><strong>Privileges or Immunities Clause:</strong> No state shall abridge the privileges or immunities of U.S. citizens.</li><li><strong>Due Process Clause:</strong> No state shall deprive any person of life, liberty, or property without due process of law.</li><li><strong>Equal Protection Clause:</strong> No state shall deny any person within its jurisdiction 'the equal protection of the laws.'</li></ol><p>The Equal Protection Clause is the constitutional basis for <em>Brown v. Board of Education</em> (1954) and most modern civil rights law.</p>"
+    },
+    {
+      q: "What is the 15th Amendment, when was it ratified, and what is its key limitation?",
+      a: "<strong>Ratified:</strong> February 3, 1870.<p><strong>Text:</strong> <em>'The right of citizens of the United States to vote shall not be denied or abridged by the United States or by any State on account of race, color, or previous condition of servitude.'</em></p><p>It guarantees the right to vote regardless of race — to <strong>men</strong>.</p><p><strong>Major limitation:</strong> The amendment says nothing about <em>sex</em>, which split the women's suffrage movement. <strong>Elizabeth Cady Stanton and Susan B. Anthony</strong> opposed the amendment because it left women out; <strong>Frederick Douglass</strong> defended it, arguing Black male suffrage was urgent and could not wait for universal suffrage. Women would not get the federal vote until the <strong>19th Amendment in 1920</strong> — fifty years later.</p><p><strong>Second limitation:</strong> Southern states evaded the 15th Amendment via poll taxes, literacy tests, grandfather clauses, and outright violence. Effective Black voting in the South was not secured until the <strong>Voting Rights Act of 1965</strong>.</p>"
+    },
+    {
+      q: "Why are the 13th, 14th, and 15th Amendments collectively called the 'Reconstruction Amendments' or 'the Second Founding'?",
+      a: "<p>Together, they fundamentally remade American citizenship and the relationship between federal and state government:</p><ul><li><strong>13th</strong> ended slavery as a legal institution.</li><li><strong>14th</strong> defined national citizenship and bound the states to equal protection and due process.</li><li><strong>15th</strong> banned racial restrictions on voting.</li></ul><p>Before these amendments, the Bill of Rights restrained only the federal government; states could discriminate freely. After the 14th Amendment, the federal Constitution became a tool to enforce rights against states — the foundation of modern civil rights law.</p><p>Historian <strong>Eric Foner</strong> calls them <em>the Second Founding</em>: a constitutional refounding of the United States as a multiracial democracy. They overturned <em>Dred Scott</em> and made Lincoln's 'new birth of freedom' textual law.</p><p><strong>However</strong>: their promise was largely betrayed by 1877 with the end of Reconstruction, the rise of Jim Crow, and the Court's narrow readings (e.g., the <em>Slaughter-House Cases</em> of 1873 and ultimately <em>Plessy v. Ferguson</em> in 1896).</p>"
+    },
+    {
+      q: "How does Dred Scott connect to Lincoln's Inaugurals and the Gettysburg Address?",
+      a: "<p>This is a powerful synthesis question often used in essay exams.</p><ul><li><strong>Dred Scott (1857)</strong> declared that 'all men are created equal' did NOT include Black men — Taney explicitly said the Founders never meant to include them.</li><li><strong>Lincoln's House Divided speech (1858)</strong> attacked Dred Scott directly.</li><li><strong>Gettysburg Address (1863)</strong> reasserts that the nation was 'dedicated to the proposition that all men are created equal' — a direct rebuke of Taney.</li><li><strong>Second Inaugural (1865)</strong> names slavery as the cause of the war and calls for 'malice toward none.'</li><li><strong>13th–15th Amendments (1865–1870)</strong> constitutionally enact what Lincoln only proposed.</li></ul><p>The arc runs: <em>Taney's denial of Black citizenship → Lincoln's reaffirmation of equality → constitutional reconstruction.</em></p>"
+    }
+  ]
+},
+{
+  id: 4,
+  title: "Stanton's 'Declaration of Sentiments' & the 19th Amendment",
+  short: "Stanton · 19th Amendment",
+  blurb: "From Seneca Falls (July 1848) to ratification (August 1920) — a 72-year campaign for women's political equality, declared in the language of 1776.",
+  cards: [
+    {
+      q: "Who was Elizabeth Cady Stanton?",
+      a: "<p><strong>Elizabeth Cady Stanton</strong> (1815–1902) was an American women's rights activist, abolitionist, and the principal author of the <strong>Declaration of Sentiments</strong>.</p><p>Born into a wealthy New York family, she received an unusually rigorous education for a woman of her era. Her radicalization came partly through her honeymoon experience: in 1840, she and her husband Henry Stanton attended the <strong>World Anti-Slavery Convention in London</strong>, where female delegates (including Lucretia Mott) were forced to sit behind a curtain, unable to participate. This humiliation convinced Stanton and Mott to organize for women's rights.</p><p>Stanton later worked closely with <strong>Susan B. Anthony</strong>; their partnership defined American feminism for the rest of the 19th century. Stanton wrote, Anthony organized.</p>"
+    },
+    {
+      q: "What was the Seneca Falls Convention?",
+      a: "<strong>Dates:</strong> July 19–20, 1848.<br><strong>Place:</strong> Wesleyan Methodist Chapel, Seneca Falls, New York.<p>The first women's rights convention in U.S. history. Organized chiefly by <strong>Elizabeth Cady Stanton</strong> and <strong>Lucretia Mott</strong>, with Mott's sister Martha Coffin Wright, Mary Ann McClintock, and Jane Hunt.</p><p>About 300 attendees. The convention adopted Stanton's <strong>Declaration of Sentiments</strong> on day one. Day two debated 12 resolutions, including the most controversial — <strong>women's right to vote</strong>. Even Lucretia Mott initially worried that the suffrage resolution would make the movement look ridiculous.</p><p>The resolution passed only after <strong>Frederick Douglass</strong> spoke powerfully in its favor.</p>"
+    },
+    {
+      q: "What document is the Declaration of Sentiments modeled on, and why?",
+      a: "<p>The Declaration of Sentiments is deliberately modeled, almost word-for-word at the start, on the <strong>Declaration of Independence (1776)</strong>.</p><p>The Declaration of Independence opens: <em>'We hold these truths to be self-evident, that all men are created equal...'</em></p><p>The Declaration of Sentiments opens: <em>'We hold these truths to be self-evident, that all men <strong>and women</strong> are created equal...'</em></p><p>This is a brilliant rhetorical strategy:</p><ul><li>It claims the authority of America's founding document.</li><li>It exposes the hypocrisy of a nation founded on equality that excludes half its population.</li><li>It frames women's rights as the natural extension of American principles, not a foreign import.</li><li>It uses the structure of grievances against King George III to enumerate grievances against men.</li></ul>"
+    },
+    {
+      q: "What were the key grievances Stanton listed against men?",
+      a: "<p>Stanton listed <strong>15–18 specific grievances</strong> (depending on how you count) — paralleling the grievances against George III. Major ones:</p><ul><li>Women have no right to vote.</li><li>Married women are 'civilly dead' — they cannot own property, sign contracts, or keep their own wages.</li><li>If divorced, women lose custody of their children, with men determining custody.</li><li>Women are taxed without representation.</li><li>Women cannot enter most professions (medicine, law, theology).</li><li>Educational institutions refuse to admit them.</li><li>The church places women in subordinate roles.</li><li>Men set a different moral code for women than for themselves (the 'double standard').</li><li>Men have <em>'endeavored, in every way that he could, to destroy her confidence in her own powers, to lessen her self-respect, and to make her willing to lead a dependent and abject life.'</em></li></ul>"
+    },
+    {
+      q: "What was the most controversial resolution at Seneca Falls, and who saved it?",
+      a: "<p>The 9th resolution — that <strong>'it is the duty of the women of this country to secure to themselves their sacred right to the elective franchise'</strong> — was the only one that did not pass unanimously.</p><p>Even Lucretia Mott urged Stanton to drop it, fearing it would discredit the entire movement. Most attendees thought asking for the vote was politically suicidal in 1848 (no woman could vote anywhere in the U.S. at that time).</p><p><strong>Frederick Douglass</strong>, the great abolitionist and the only Black person at the convention, gave a powerful speech in favor of the resolution. He argued that political power was the indispensable foundation of all other rights. The resolution narrowly passed.</p><p>This made Seneca Falls the moment U.S. feminism formally demanded the vote — beginning a campaign that would not succeed for <strong>72 more years</strong>.</p>"
+    },
+    {
+      q: "Who signed the Declaration of Sentiments?",
+      a: "<p><strong>100 signers</strong> in total: 68 women and 32 men.</p><p>The signers included Elizabeth Cady Stanton, Lucretia Mott, Mary Ann McClintock, and notably <strong>Frederick Douglass</strong>, who signed alongside the women — making him a co-signatory of America's foundational feminist document.</p><p>That a Black man, born enslaved, would be central to the founding moment of the women's movement reflects how interwoven the abolitionist and feminist movements were in the mid-19th century. (This alliance fractured later, in the late 1860s, over the 15th Amendment, which gave Black men the vote but not women.)</p><p>Many signers later asked to have their names removed because of public ridicule — an indication of how scandalous the convention's demands seemed at the time.</p>"
+    },
+    {
+      q: "What is the 19th Amendment, and when was it ratified?",
+      a: "<strong>Passed by Congress:</strong> June 4, 1919.<br><strong>Ratified:</strong> August 18, 1920 (Tennessee was the decisive 36th state).<br><strong>Certified:</strong> August 26, 1920.<p><strong>Text:</strong> <em>'The right of citizens of the United States to vote shall not be denied or abridged by the United States or by any State on account of sex.'</em></p><p>It was modeled directly on the language of the 15th Amendment (which had banned racial denial of the vote in 1870).</p><p><strong>72 years</strong> separated Seneca Falls (1848) from ratification (1920). Stanton, Anthony, and most of the original Seneca Falls signers did not live to see it. Stanton died in 1902; Anthony in 1906.</p>"
+    },
+    {
+      q: "What is the famous Tennessee 'vote of the mother' story?",
+      a: "<p>By August 1920, the 19th Amendment had been ratified by 35 states; one more was needed for the required three-fourths.</p><p>Tennessee's legislature was deadlocked 48–48. The deciding vote belonged to <strong>Harry T. Burn</strong>, a 24-year-old Republican who had been planning to vote No.</p><p>That morning, Burn received a letter from his mother, Febb Burn, that read in part: <em>'Don't forget to be a good boy and help Mrs. Catt put the 'rat' in ratification.'</em></p><p>Burn switched his vote to Yes. Tennessee ratified by one vote, and the 19th Amendment became law.</p>"
+    },
+    {
+      q: "What were the major limitations of the 19th Amendment?",
+      a: "<p>Despite its triumph, the 19th Amendment did <strong>not</strong> give all American women the vote in practice.</p><ul><li><strong>Black women in the South</strong> remained disenfranchised by the same Jim Crow tactics used against Black men: poll taxes, literacy tests, grandfather clauses, white primaries, and violence. Their effective enfranchisement waited for the <strong>Voting Rights Act of 1965</strong>.</li><li><strong>Native American women</strong> could not vote in federal elections until the <strong>Indian Citizenship Act of 1924</strong>; some states blocked them well into the 1950s and 1960s.</li><li><strong>Asian American women</strong> could not become citizens (and so could not vote) until immigration and naturalization laws were reformed (Magnuson Act 1943; McCarran-Walter 1952).</li><li><strong>Puerto Rican women</strong> got limited suffrage in 1929 and full suffrage in 1935.</li></ul><p>This is why feminist scholars often emphasize that 1920 was a victory primarily for white women, and that the suffrage movement itself often excluded or marginalized women of color.</p>"
+    },
+    {
+      q: "How does the Declaration of Sentiments relate to the Declaration of Independence and the 14th/15th Amendments?",
+      a: "<p>Common essay synthesis. The relationship runs in both directions.</p><p><strong>Backward to 1776:</strong> Stanton claims the Declaration of Independence's language of equality applies to women too. She accuses Americans of betraying their own founding principles. She extends 'all men are created equal' to its logical conclusion.</p><p><strong>Forward to 1868–1870:</strong> The 14th Amendment introduced the word <em>'male'</em> into the Constitution for the first time (in Section 2). Stanton was outraged. The 15th Amendment then gave Black men the vote without giving women. Stanton and Anthony broke with their abolitionist allies (including Frederick Douglass, who had signed the Declaration of Sentiments 22 years earlier) over this question.</p><p>The fracture haunted the movement for decades and contributed to racism within mainstream white suffragism — a history of moral compromise the movement never fully resolved.</p>"
+    }
+  ]
+},
+{
+  id: 5,
+  title: "Plessy v. Ferguson (1896)",
+  short: "Plessy v. Ferguson",
+  blurb: "The decision that constitutionalized 'separate but equal' and licensed sixty years of Jim Crow — overturned at last by Brown v. Board in 1954.",
+  cards: [
+    {
+      q: "Who was Homer Plessy, and what did he do?",
+      a: "<p><strong>Homer Adolph Plessy</strong> (1862–1925) was a New Orleans shoemaker. He was <strong>seven-eighths white and one-eighth Black</strong> ('octoroon' in the racial taxonomy of the era). Under Louisiana law, he was classified as 'colored.'</p><p>On <strong>June 7, 1892</strong>, Plessy boarded the East Louisiana Railroad in New Orleans and deliberately sat in the 'whites-only' car. He had been recruited by the <strong>Comité des Citoyens</strong> ('Citizens' Committee'), a group of New Orleans civil rights activists, to test the state's <strong>Separate Car Act of 1890</strong>.</p><p>The conductor — informed in advance — asked Plessy to move; he refused. He was arrested and charged with violating the Separate Car Act. The committee chose Plessy partly because his light skin would emphasize the absurdity of racial classification.</p>"
+    },
+    {
+      q: "What was the Louisiana Separate Car Act, and what did it require?",
+      a: "<p>The <strong>Separate Car Act</strong> was an 1890 Louisiana statute requiring railroads to provide <strong>'equal but separate accommodations'</strong> for white and 'colored' passengers. It made it a criminal offense to sit in a car designated for the other race.</p><p>The Act was part of a wave of post-Reconstruction Jim Crow laws sweeping the South after federal troops withdrew in 1877. It codified racial segregation in transportation; similar laws spread to schools, parks, restaurants, hospitals, and courtrooms.</p><p>The Comité des Citoyens chose to challenge the law because they believed it violated the <strong>13th and 14th Amendments</strong> — the 13th by imposing a 'badge of slavery,' and the 14th by denying equal protection.</p>"
+    },
+    {
+      q: "When was Plessy v. Ferguson decided, and what was the vote?",
+      a: "<strong>Date:</strong> May 18, 1896.<br><strong>Vote:</strong> 7–1 (Justice David Brewer did not participate).<br><strong>Author of majority opinion:</strong> Justice <strong>Henry Billings Brown</strong>.<br><strong>Sole dissent:</strong> Justice <strong>John Marshall Harlan</strong> — known thereafter as 'the Great Dissenter.'<p>The 'Ferguson' in the case name is John Howard Ferguson, the Louisiana judge who had ruled against Plessy at the trial level.</p>"
+    },
+    {
+      q: "What was the central holding of Plessy v. Ferguson?",
+      a: "<p>The Court upheld the Louisiana Separate Car Act and held that state-mandated racial segregation did not violate the 14th Amendment, so long as the separate facilities were <strong>'equal.'</strong></p><p>This established the infamous <span class='keyterm'>'separate but equal'</span> doctrine, which would govern American race law for the next 58 years.</p><p>Justice Brown's reasoning included three notable claims:</p><ul><li>The 14th Amendment was meant to enforce 'absolute equality before the law,' but did not abolish 'distinctions based upon color.'</li><li>Segregation does not stamp Black people with a 'badge of inferiority' — and if they perceived it that way, the fault was 'solely because the colored race chooses to put that construction upon it.' (A breathtakingly cynical claim.)</li><li>'Legislation is powerless to eradicate racial instincts or to abolish distinctions based upon physical differences.'</li></ul>"
+    },
+    {
+      q: "What did Justice Harlan argue in his famous dissent?",
+      a: "<p>Justice <strong>John Marshall Harlan</strong>, a former slaveholder from Kentucky who had become a fierce defender of civil rights, wrote one of the most celebrated dissents in U.S. history.</p><div class='quote'>Our Constitution is color-blind, and neither knows nor tolerates classes among citizens. In respect of civil rights, all citizens are equal before the law.</div><p>Harlan argued:</p><ul><li>Segregation laws plainly aimed to subjugate Black Americans, regardless of formal 'equality.'</li><li>Such laws would 'stimulate aggressions, more or less brutal and irritating, upon the admitted rights of colored citizens.'</li><li>The decision would prove 'as pernicious as the decision in the <em>Dred Scott</em> case.'</li></ul><p>Harlan's prediction was vindicated. His phrase <strong>'Our Constitution is color-blind'</strong> has been quoted by every side of the modern affirmative action debate — by both opponents and defenders, in different ways.</p>"
+    },
+    {
+      q: "What was 'Jim Crow,' and how did Plessy enable it?",
+      a: "<p><strong>Jim Crow</strong> refers to the system of state and local laws and customs that enforced racial segregation in the American South (and parts of the North) from roughly the late 1870s through the 1960s.</p><p>The name comes from a 19th-century blackface minstrel character. <strong>Jim Crow laws</strong> covered nearly every aspect of public life: separate schools, water fountains, restrooms, train cars, buses, restaurants, hospitals, swimming pools, even cemeteries.</p><p><em>Plessy v. Ferguson</em> gave constitutional cover to this entire system. After 1896:</p><ul><li>States rapidly expanded segregation statutes.</li><li>'Equal' facilities were almost never actually equal — Black schools, hospitals, and train cars were chronically underfunded.</li><li>Jim Crow was reinforced by disenfranchisement (poll taxes, literacy tests, grandfather clauses) and by extralegal terror, including lynching.</li></ul><p>The system would not be dismantled until <em>Brown v. Board</em> (1954) and the Civil Rights Act (1964) and Voting Rights Act (1965).</p>"
+    },
+    {
+      q: "How was Plessy connected to (and how did it betray) the 14th Amendment?",
+      a: "<p>The 14th Amendment (1868) had been written specifically to protect formerly enslaved people from state discrimination. Its <strong>Equal Protection Clause</strong> guarantees that 'no state shall deny to any person within its jurisdiction the equal protection of the laws.'</p><p>The Comité des Citoyens argued — correctly, in retrospect — that segregating Black citizens violated this guarantee.</p><p>The <em>Plessy</em> Court read the Equal Protection Clause as narrowly as possible. By treating segregation as 'reasonable' and by deferring to white perception of 'social' versus 'civil' equality, the Court drained the 14th Amendment of much of its meaning.</p><p>Combined with earlier Reconstruction-era setbacks — the <em>Slaughter-House Cases</em> (1873), the <em>Civil Rights Cases</em> (1883), <em>United States v. Cruikshank</em> (1876) — <em>Plessy</em> completed the judicial dismantling of Reconstruction. The 'Second Founding' was effectively neutralized for two generations.</p>"
+    },
+    {
+      q: "How and when was Plessy v. Ferguson overturned?",
+      a: "<p><em>Plessy</em> was formally overturned by <strong>Brown v. Board of Education</strong> on <strong>May 17, 1954</strong>.</p><p>Chief Justice Earl Warren, writing for a unanimous Court, held that <em>'separate educational facilities are inherently unequal.'</em> This directly contradicted Brown's claim in <em>Plessy</em> that 'separate' did not imply 'inferior.'</p><p>Even after <em>Brown</em>, the doctrine persisted in other domains. It was overturned in detail across the next decade:</p><ul><li><strong>1955:</strong> <em>Brown II</em> — desegregation 'with all deliberate speed.'</li><li><strong>1956:</strong> <em>Browder v. Gayle</em> — bus segregation unconstitutional.</li><li><strong>1964:</strong> <strong>Civil Rights Act</strong> bans discrimination in public accommodations.</li><li><strong>1965:</strong> <strong>Voting Rights Act</strong> ends most racial voter suppression.</li><li><strong>1967:</strong> <em>Loving v. Virginia</em> — bans on interracial marriage unconstitutional.</li></ul><p>Together, these mark the second great civil-rights moment in American history.</p>"
+    },
+    {
+      q: "Why is Plessy v. Ferguson sometimes paired with Dred Scott as 'the two worst Supreme Court decisions'?",
+      a: "<p>Almost every scholarly ranking of the worst Supreme Court decisions includes both <em>Dred Scott</em> (1857) and <em>Plessy</em> (1896). Reasons:</p><ul><li><strong>Both reasoned from racial hierarchy</strong>: Taney said Black people 'had no rights which the white man was bound to respect'; Brown said segregation did not stamp Black people as inferior unless they 'chose' to feel that way.</li><li><strong>Both ignored constitutional text</strong>: Dred Scott rejected the 5th Amendment claim; Plessy gutted the 14th.</li><li><strong>Both produced devastating real-world consequences</strong>: Dred Scott helped cause the Civil War; Plessy enabled 60 years of Jim Crow.</li><li><strong>Both were eventually rejected</strong>: Dred Scott by the 13th–15th Amendments; Plessy by Brown v. Board.</li></ul><p>Together they bracket the failure of the Reconstruction promise — what Eric Foner calls the betrayal of the 'Second Founding.'</p>"
+    }
+  ]
+},
+{
+  id: 6,
+  title: "Nella Larsen, Passing (1929)",
+  short: "Larsen · Passing",
+  blurb: "A short, electric novel of the Harlem Renaissance about two light-skinned Black women, racial identity, secrecy, and a final fall — possibly murder, possibly accident, possibly suicide.",
+  cards: [
+    {
+      q: "Who was Nella Larsen?",
+      a: "<p><strong>Nella Larsen</strong> (1891–1964) was a Harlem Renaissance novelist, born in Chicago to a Danish mother and a mixed-race West Indian father. She trained as a nurse, then as a librarian, before turning to fiction.</p><p>She published only <strong>two novels</strong> — <em>Quicksand</em> (1928) and <em>Passing</em> (1929) — but both are now considered classics of African American modernism.</p><p>In 1930, Larsen became the <strong>first African American woman to receive a Guggenheim Fellowship for creative writing.</strong></p><p>Her career collapsed shortly afterward, partly due to a divorce scandal and a (largely overblown) plagiarism accusation. She returned to nursing in New York and died in obscurity in 1964. Her work was rediscovered and championed by Black feminist scholars in the 1970s and 1980s.</p>"
+    },
+    {
+      q: "What is the Harlem Renaissance, and how does Passing fit into it?",
+      a: "<p>The <strong>Harlem Renaissance</strong> was an explosion of African American literature, art, music, and intellectual life centered in Harlem, New York, roughly 1918–1937. Major figures: <strong>Langston Hughes, Zora Neale Hurston, W.E.B. Du Bois, Countee Cullen, Jean Toomer, Claude McKay, Duke Ellington</strong>.</p><p>Larsen is part of the Harlem Renaissance's middle generation. <em>Passing</em> (1929) is one of its key novels because:</p><ul><li>It is set partly in Harlem, where the cultural movement was concentrated.</li><li>It engages with the era's central question: what does it mean to be Black in America?</li><li>It treats themes of racial identity, class, gender, and sexuality with modernist subtlety.</li><li>It was published right at the moment of the Harlem Renaissance's peak — and just before the Stock Market Crash (October 1929) ended much of its institutional support.</li></ul>"
+    },
+    {
+      q: "What does 'passing' mean in the novel?",
+      a: "<p><strong>'Passing'</strong> is the practice of a person of one racial identity being perceived and accepted as belonging to another — almost always, in U.S. history, a light-skinned Black person living as white.</p><p>Under the <span class='keyterm'>'one-drop rule'</span> codified in Southern law and social practice, anyone with any African ancestry was legally Black. This created a population of light-skinned African Americans who could, at the cost of severing ties to family and community, slip into white society and gain access to education, jobs, neighborhoods, and marriages otherwise barred to them.</p><p>Passing was therefore both a survival strategy and a moral problem. It involved:</p><ul><li><strong>Risk</strong> of exposure (with social, legal, sometimes violent consequences).</li><li><strong>Loss</strong> of family, community, and identity.</li><li><strong>Complicity</strong> with the racism that made passing necessary.</li></ul><p>Larsen explores all three.</p>"
+    },
+    {
+      q: "Who is Irene Redfield, the protagonist?",
+      a: "<p><strong>Irene Redfield</strong> is the novel's main consciousness — though she is not exactly a reliable narrator. She is:</p><ul><li>Light-skinned, married to <strong>Brian Redfield</strong>, a Black doctor.</li><li>Mother of two sons, Brian Jr. and Theodore (Ted).</li><li>An upper-middle-class Harlem matron who organizes the Negro Welfare League.</li><li>Capable of <strong>occasional, situational passing</strong> — sitting in a whites-only hotel rooftop tea garden when she's hot and tired — but committed to her Black identity.</li></ul><p>Irene is obsessed with <strong>'security'</strong> — her marriage, her social position, her sons' futures. The novel is the story of how Clare Kendry's reappearance in her life threatens that security.</p><p>Critics often describe Irene as repressed, jealous, controlling, and possibly self-deceived — particularly about her own desires.</p>"
+    },
+    {
+      q: "Who is Clare Kendry?",
+      a: "<p><strong>Clare Kendry</strong> is Irene's childhood friend from Chicago and the catalyst of the novel. She is:</p><ul><li>Strikingly beautiful, with 'ivory' skin.</li><li>Orphaned young; raised by white great-aunts who treated her as a servant.</li><li>Permanently 'passing' as white. She left Chicago years before, married a wealthy white international banker, <strong>John Bellew</strong>, and lives in Europe and the U.S. as a white woman.</li><li>Mother of one daughter, Margery, raised entirely as white.</li><li>Bored and lonely — desperate for contact with the Black community she abandoned.</li></ul><p>Clare is glamorous, reckless, and seductive. She returns into Irene's life by chance in a Chicago rooftop tea garden in Part I and refuses to leave. Her presence destabilizes Irene's marriage, social world, and sense of self.</p>"
+    },
+    {
+      q: "Who is John Bellew, and what is the 'Nig' nickname scene?",
+      a: "<p><strong>John (Jack) Bellew</strong> is Clare's husband. He is white, wealthy, and a virulent racist — and he does not know his wife is Black.</p><p>In a horrifying scene at tea (Part I, Chapter 3), Bellew greets Clare with the nickname <strong>'Nig'</strong> — a shortening of a racial slur. He explains, joking, that as Clare has gotten older her skin has darkened: <em>'When we were first married, she was as white as — as — well as white as a lily. But I declare she's gettin' darker and darker. I tell her if she don't look out, she'll wake up one of these days and find she's turned into a nigger.'</em></p><p>Irene and another light-skinned passing woman, Gertrude, sit listening in helpless silence. Bellew then says he 'draws the line' at Black people and would never let one in his house. Clare laughs and asks him what he would do if he discovered she had Black ancestry. He says, <em>'Nothing. I know you're no nigger, so it's all right.'</em></p><p>The scene exposes the violence and fragility of the racial regime that Clare's passing depends on.</p>"
+    },
+    {
+      q: "What are the three parts of the novel?",
+      a: "<p>The novel is structured in <strong>three parts</strong>:</p><ol><li><strong>Encounter</strong> (Chicago, 1927) — Irene and Clare meet by chance in the rooftop tea garden of the Drayton Hotel; both are passing for the afternoon. Clare introduces Irene to John Bellew; the 'Nig' tea scene happens; Irene leaves disgusted, hoping never to see Clare again.</li><li><strong>Re-Encounter</strong> (Harlem, two years later) — Clare resurfaces in Harlem, attaches herself to Irene's family, charms Brian and the children. Irene grows suspicious that Clare and Brian are having an affair.</li><li><strong>Finale</strong> (Harlem) — At a party in a Harlem apartment, John Bellew bursts in, having discovered the truth. He confronts Clare. In an unforgettable, ambiguous scene, Clare falls (or is pushed) from the sixth-floor window to her death.</li></ol>"
+    },
+    {
+      q: "What is the famously ambiguous ending of Passing?",
+      a: "<p>The final scene is one of the most celebrated ambiguities in 20th-century American fiction.</p><p>At the Harlem party, John Bellew arrives, having tracked his wife down. He shouts at Clare: <em>'So you're a nigger, a damned dirty nigger!'</em> Clare stands by an open window, smiling — 'a faint smile on her full red lips.'</p><p>Then the text becomes deliberately unclear. Irene is described as moving toward Clare. <em>'One moment Clare had been there ... the next she was gone.'</em></p><p>Three readings are possible — and all three are textually defensible:</p><ul><li><strong>Suicide:</strong> Clare jumps, knowing her life as a white woman is over.</li><li><strong>Accident:</strong> She falls, off-balance.</li><li><strong>Murder:</strong> Irene pushes her — out of jealousy, fear, or to eliminate the threat to her marriage and security.</li></ul><p>Larsen never resolves it. Irene afterward thinks: <em>'What would the others think? That Clare had fallen? That she had deliberately leaned backward? Certainly one or the other. Not — Not — '</em></p><p>The ellipses are part of the text. Larsen makes the reader complicit in the cover-up.</p>"
+    },
+    {
+      q: "What is the queer / sexual subtext of Passing?",
+      a: "<p>Beginning with critic <strong>Deborah McDowell's introduction to the 1986 reissue</strong>, scholars have read <em>Passing</em> as a novel about repressed lesbian desire as much as racial passing.</p><p>Evidence:</p><ul><li>Irene's descriptions of Clare are intensely physical and sensual: <em>'gold ... ivory ... arresting eyes'</em>; she watches Clare obsessively.</li><li>Irene's marriage is sexless and unsatisfying; she imagines Clare is having an affair with Brian, but the textual evidence is thin.</li><li>The novel is full of doublings and mirror images between the two women.</li><li>'Passing' has a <strong>double meaning</strong>: passing racially, but also 'passing' as straight in a heteronormative society.</li></ul><p>Some critics argue Irene 'kills' Clare not because she fears Clare will steal Brian, but because Clare represents a desire (queer, racially fluid, free) Irene cannot allow herself.</p><p>This reading does not replace the racial reading; it intensifies it. <em>Passing</em> becomes a novel about the multiple identities a person must conceal to survive in a hostile society.</p>"
+    },
+    {
+      q: "How does Passing connect to the rest of the course's themes (Plessy, Jim Crow, civil rights)?",
+      a: "<p><em>Passing</em> takes the legal regime of <em>Plessy v. Ferguson</em> and reveals its psychological texture.</p><ul><li><strong>The 'one-drop rule'</strong> — the legal premise of the entire racial caste system — is the precondition for passing. Without it, the novel is impossible.</li><li><strong>Jim Crow segregation</strong> is the everyday violence Clare flees and Irene endures.</li><li><strong>The fragility of 'separate but equal'</strong> is exposed: a system that needs people to look 'identifiably' Black or white cannot hold up against actual human bodies.</li><li><strong>The cost of survival</strong> under racism: passing requires Clare to abandon her mother's people, her community, and a substantial portion of herself.</li></ul><p>So while <em>Plessy</em> tells you what the law was, <em>Passing</em> tells you what it felt like to live inside that law — and what it cost. It humanizes constitutional history.</p>"
+    },
+    {
+      q: "How does Passing engage gender, marriage, and class?",
+      a: "<p>Beyond race, the novel is a sharp study of <strong>marriage and bourgeois respectability</strong> in the 1920s.</p><ul><li><strong>Irene's marriage</strong> to Brian is presented as stifling. Brian wants to leave America for Brazil (where he believes racism is less suffocating); Irene refuses, prioritizing 'security' for her sons.</li><li><strong>Clare's marriage</strong> to Bellew is built on a lie that gives her financial comfort but emotional starvation.</li><li>Both women are confined by the gender expectations of upper-middle-class life — neither has work outside the home; both define themselves through their husbands.</li><li>Clare's daughter Margery never appears as a character; Clare's claim that she does not want more children, lest one come out 'dark,' is presented as the deepest cost of passing.</li></ul><p>Larsen anticipates many themes that later Black feminist writers (Toni Morrison, Alice Walker) develop — particularly the way Black women's bodies are sites of conflicting demands from racism, patriarchy, and class.</p>"
+    }
+  ]
+},
+{
+  id: 7,
+  title: "Brown v. Board of Education (1954)",
+  short: "Brown v. Board",
+  blurb: "The unanimous decision that overturned Plessy, declared segregated schools unconstitutional, and triggered the modern civil rights movement.",
+  cards: [
+    {
+      q: "When was Brown v. Board of Education decided, and what was the vote?",
+      a: "<strong>Date:</strong> May 17, 1954.<br><strong>Vote:</strong> <strong>9–0 (unanimous).</strong><br><strong>Author of opinion:</strong> Chief Justice <strong>Earl Warren</strong>.<p>The unanimity was a deliberate political achievement. When Warren joined the Court in October 1953 (replacing Chief Justice Fred Vinson, who died suddenly), the Court was divided. Warren spent months patiently persuading every justice to sign a single opinion, believing that anything less than unanimity would invite Southern resistance. He succeeded; even Justice Stanley Reed, the holdout most sympathetic to segregation, joined.</p><p>The case was actually <strong>five consolidated cases</strong> from Kansas, South Carolina, Virginia, Delaware, and the District of Columbia (the D.C. case, <em>Bolling v. Sharpe</em>, was decided the same day under the 5th Amendment, since the 14th doesn't apply to D.C.).</p>"
+    },
+    {
+      q: "Who was Linda Brown, and how did the case begin?",
+      a: "<p><strong>Linda Brown</strong> was a 7-year-old African American girl in <strong>Topeka, Kansas</strong>. She had to walk through dangerous railyards to reach her bus stop, then ride to a Black-only school far from home, even though an all-white school was just blocks away.</p><p>In 1951, her father <strong>Oliver Brown</strong>, a welder and assistant pastor, attempted to enroll Linda at the closer Sumner Elementary School. He was refused. With the help of the NAACP, the Browns and twelve other Topeka families filed suit. Oliver Brown's name appeared first alphabetically — hence the case name.</p><p>The Topeka case was strategically important because Kansas was <em>not</em> a Deep South state. Linda Brown's segregated school was actually relatively well-equipped — making clear that the harm was segregation itself, not just unequal facilities.</p>"
+    },
+    {
+      q: "Who was Thurgood Marshall, and what was the NAACP's strategy?",
+      a: "<p><strong>Thurgood Marshall</strong> (1908–1993) was the lead attorney for the NAACP Legal Defense Fund and chief architect of the civil rights litigation strategy. He argued <em>Brown</em> before the Supreme Court. (He would later become the <strong>first Black Justice of the Supreme Court</strong> in 1967, appointed by LBJ.)</p><p>Marshall and his mentor <strong>Charles Hamilton Houston</strong> (Dean of Howard Law School) had spent <strong>20 years</strong> chipping away at <em>Plessy</em>. Their incremental strategy:</p><ol><li>Force Southern states to provide actually 'equal' Black graduate and law school facilities — knowing they couldn't afford to. Cases: <em>Murray v. Pearson</em> (1936), <em>Missouri ex rel. Gaines v. Canada</em> (1938).</li><li>Win narrow rulings that segregated graduate schools were unequal: <em>Sweatt v. Painter</em> and <em>McLaurin v. Oklahoma State Regents</em> (both 1950).</li><li>Then mount a frontal challenge to segregation itself, in K-12 education, where the case for harm to children was strongest.</li></ol><p><em>Brown</em> was the culmination of this strategy.</p>"
+    },
+    {
+      q: "What were the 'doll tests,' and how did they shape Brown?",
+      a: "<p>The <strong>'doll tests'</strong> were a series of psychological experiments conducted in the 1940s by <strong>Kenneth Clark and Mamie Clark</strong>, husband-and-wife African American psychologists.</p><p>They presented Black children with two dolls — one white, one Black — and asked which doll was 'nice,' which was 'bad,' which they would prefer to play with. A majority of Black children chose the white doll as 'nice' and 'pretty,' the Black doll as 'bad' or 'ugly.' Some refused to identify themselves with the Black doll altogether.</p><p>The Clarks argued this was direct evidence that segregation produced a <strong>'sense of inferiority'</strong> in Black children that affected their self-conception and motivation.</p><p>Marshall introduced the doll-test evidence at trial. Chief Justice Warren cited social-science evidence (in <strong>Footnote 11</strong>) of the psychological harm of segregation. This is one of the first times the Supreme Court openly relied on social-science research to decide a constitutional question — a fact that critics of the decision still emphasize.</p>"
+    },
+    {
+      q: "What was the central holding of Brown v. Board?",
+      a: "<p>Chief Justice Warren's opinion held that <strong>state-mandated racial segregation in public schools violates the Equal Protection Clause of the 14th Amendment</strong>.</p><p>The most famous sentences:</p><div class='quote'>We conclude that, in the field of public education, the doctrine of 'separate but equal' has no place. Separate educational facilities are inherently unequal.</div><p>Three things to notice:</p><ul><li>Warren said segregation was 'inherently' unequal — meaning equal funding or facilities couldn't cure it. This destroyed the entire factual premise of <em>Plessy</em>.</li><li>The opinion focused on <strong>education specifically</strong>, calling it 'perhaps the most important function of state and local governments.'</li><li>The opinion did not formally overturn <em>Plessy</em> in all contexts — but in subsequent per curiam decisions, the Court applied <em>Brown</em>'s logic to public beaches, golf courses, parks, buses, and so on.</li></ul>"
+    },
+    {
+      q: "What was Brown II, and what is the meaning of 'all deliberate speed'?",
+      a: "<strong>Brown II:</strong> Decided <strong>May 31, 1955</strong>.<p>Having declared segregation unconstitutional in 1954, the Court left open the question of <strong>how</strong> to dismantle it. <em>Brown II</em> was the implementation decision.</p><p>It directed federal district courts to oversee desegregation <strong>'with all deliberate speed.'</strong></p><p>The phrase has become notorious. It was meant to balance urgency with the practical difficulties of dismantling a hundred-year-old system, but in practice it gave Southern school districts a license to delay. Many districts did not meaningfully desegregate until the late 1960s and 1970s, after further Court rulings (<em>Green v. New Kent County</em> 1968, <em>Swann v. Charlotte-Mecklenburg</em> 1971) and federal enforcement.</p><p>Critics like Justice Thurgood Marshall (later) and Constance Baker Motley argued the phrase was 'a tragic mistake' that prolonged segregation by a generation.</p>"
+    },
+    {
+      q: "What was 'Massive Resistance'?",
+      a: "<p><strong>'Massive Resistance'</strong> was the organized Southern campaign to defy <em>Brown</em>. It included:</p><ul><li>The <strong>Southern Manifesto</strong> (March 1956): 101 Southern members of Congress denounced <em>Brown</em> as 'a clear abuse of judicial power' and pledged to use 'all lawful means' to resist.</li><li>State 'interposition' laws claiming the right to nullify federal court orders.</li><li>School-closure laws — Virginia closed entire school districts rather than integrate (e.g., Prince Edward County's schools were closed for <strong>five years</strong>, 1959–1964).</li><li>Private 'segregation academies' for white students.</li><li>Direct violence, e.g., the <strong>Little Rock Crisis (September 1957)</strong>: Arkansas Governor Orval Faubus deployed the National Guard to block nine Black students from entering Central High School. President Eisenhower federalized the Guard and sent the 101st Airborne to escort the 'Little Rock Nine' to class.</li></ul><p>Massive Resistance lasted into the late 1960s and shaped the political realignment of the South.</p>"
+    },
+    {
+      q: "How did Brown overturn Plessy v. Ferguson?",
+      a: "<p>Direct comparison:</p><ul><li><strong>Plessy (1896):</strong> Held that 'separate' did not mean 'unequal'; segregation did not stamp Black people with a 'badge of inferiority' unless they 'chose' to feel that way.</li><li><strong>Brown (1954):</strong> Held that 'separate educational facilities are <em>inherently</em> unequal' — segregation by its nature inflicts a psychological injury that cannot be cured by equal facilities.</li></ul><p>Warren explicitly addressed this in the opinion: <em>'Whatever may have been the extent of psychological knowledge at the time of Plessy v. Ferguson, this finding is amply supported by modern authority.'</em></p><p>This finally vindicated Justice Harlan's lone <em>Plessy</em> dissent ('Our Constitution is color-blind') after 58 years.</p>"
+    },
+    {
+      q: "How did Brown v. Board catalyze the Civil Rights Movement?",
+      a: "<p><em>Brown</em> did not by itself end segregation — but it gave the civil rights movement constitutional legitimacy and political momentum. A condensed timeline:</p><ul><li><strong>August 1955:</strong> 14-year-old Emmett Till is lynched in Mississippi for allegedly whistling at a white woman.</li><li><strong>December 1955:</strong> Rosa Parks refuses to give up her bus seat in Montgomery, Alabama. <strong>Montgomery Bus Boycott</strong> begins, propelling 26-year-old Martin Luther King Jr. to national prominence.</li><li><strong>September 1957:</strong> Little Rock Nine integrate Central High School.</li><li><strong>February 1960:</strong> Greensboro sit-ins.</li><li><strong>1961:</strong> Freedom Rides.</li><li><strong>April 1963:</strong> Birmingham campaign and MLK's <em>Letter from Birmingham Jail</em>.</li><li><strong>August 1963:</strong> March on Washington — 'I Have a Dream.'</li><li><strong>July 1964:</strong> Civil Rights Act bans discrimination in public accommodations.</li><li><strong>August 1965:</strong> Voting Rights Act.</li></ul><p>The decade-plus arc from <em>Brown</em> through 1965 dismantled the legal architecture of Jim Crow.</p>"
+    }
+  ]
+},
+{
+  id: 8,
+  title: "Martin Luther King Jr., 'Letter from Birmingham Jail' (1963)",
+  short: "MLK · Birmingham Letter",
+  blurb: "Written on newspaper margins from a jail cell on April 16, 1963 — a defense of civil disobedience, a critique of moderation, and one of the great works of American political theology.",
+  cards: [
+    {
+      q: "When and where was the Letter written, and why was King in jail?",
+      a: "<strong>Date:</strong> April 16, 1963.<br><strong>Place:</strong> <strong>Birmingham City Jail</strong>, Alabama.<p>King had been arrested on <strong>Good Friday, April 12, 1963</strong>, for violating an Alabama state-court injunction against 'parading, demonstrating, boycotting, trespassing, and picketing' in Birmingham. He led a march downtown and was jailed for nine days.</p><p>The Birmingham campaign — led by King's <strong>SCLC (Southern Christian Leadership Conference)</strong> with the local Reverend <strong>Fred Shuttlesworth</strong> — targeted what King called <em>'probably the most thoroughly segregated city in the United States.'</em> Birmingham's Public Safety Commissioner <strong>Eugene 'Bull' Connor</strong> would soon use fire hoses and police dogs against children, generating images that shocked the world.</p><p>King wrote the Letter on the margins of a newspaper, on toilet paper, and on scraps smuggled in by his lawyer. It was assembled later from these fragments.</p>"
+    },
+    {
+      q: "What was the Letter a response to?",
+      a: "<p>The Letter responds to <strong>'A Call for Unity'</strong> — a public statement published in the <em>Birmingham News</em> on <strong>April 12, 1963</strong> (the same day King was arrested) by <strong>eight white Alabama clergymen</strong>: seven Christian (Episcopal, Methodist, Presbyterian, Baptist, Catholic) and one rabbi.</p><p>Their statement called the Birmingham protests <strong>'unwise and untimely.'</strong> They argued:</p><ul><li>Civil rights demands should be pursued in the courts, not in the streets.</li><li>The protests were led by 'outsiders' (King was from Atlanta).</li><li>Direct action — even nonviolent — provokes hatred and violence.</li><li>African Americans should be patient and wait for the new (more moderate) city administration to act.</li></ul><p>King's Letter is addressed 'My Dear Fellow Clergymen' and answers each of these points methodically. It is, by design, a sermon to white moderates.</p>"
+    },
+    {
+      q: "How does King answer the charge that he is an 'outside agitator'?",
+      a: "<p>The clergymen called King an outsider. He answers in two ways.</p><p><strong>Practically:</strong> He explains that the SCLC has organizational ties throughout the South and that the Birmingham affiliate (Alabama Christian Movement for Human Rights) <em>invited</em> him.</p><p><strong>Philosophically</strong> — and this is the more famous answer:</p><div class='quote'>I am cognizant of the interrelatedness of all communities and states. I cannot sit idly by in Atlanta and not be concerned about what happens in Birmingham. <strong>Injustice anywhere is a threat to justice everywhere.</strong> We are caught in an inescapable network of mutuality, tied in a single garment of destiny. Whatever affects one directly, affects all indirectly.</div><p>The 'single garment of destiny' becomes one of the Letter's defining images. King invokes the Hebrew prophets and Apostle Paul, both of whom traveled far from home to deliver God's message.</p>"
+    },
+    {
+      q: "What are the four basic steps of a nonviolent campaign, according to King?",
+      a: "<p>King outlines the methodology of nonviolent direct action:</p><ol><li><strong>Collection of the facts</strong> to determine whether injustices are alive.</li><li><strong>Negotiation.</strong></li><li><strong>Self-purification.</strong></li><li><strong>Direct action.</strong></li></ol><p>He shows that the Birmingham campaign followed all four:</p><ul><li>Facts: Birmingham was 'probably the most thoroughly segregated' major American city; '18 unsolved bombings of Negro homes and churches' had occurred.</li><li>Negotiation: SCLC negotiated with Birmingham merchants in late 1962. They agreed to remove humiliating signs, then reneged.</li><li>Self-purification: Workshops in nonviolence; participants signed a Commitment Card promising not to retaliate.</li><li>Direct action: Sit-ins, marches, the Easter boycott.</li></ul><p>King is making a precise, almost legalistic case that the protests are not impulsive but disciplined.</p>"
+    },
+    {
+      q: "What does King say about 'tension' and direct action?",
+      a: "<p>The clergymen criticized direct action for creating tension. King embraces tension as <em>necessary</em>:</p><div class='quote'>I must confess that I am not afraid of the word 'tension.' I have earnestly opposed violent tension, but there is a type of constructive, nonviolent tension which is necessary for growth. Just as Socrates felt that it was necessary to create a tension in the mind so that individuals could rise from the bondage of myths and half-truths to the unfettered realm of creative analysis and objective appraisal, so must we see the need for nonviolent gadflies to create the kind of tension in society that will help men rise from the dark depths of prejudice and racism to the majestic heights of understanding and brotherhood.</div><p>King casts himself as a 'gadfly' in the lineage of <strong>Socrates</strong>. The purpose of direct action is not to <em>create</em> conflict but to <em>expose</em> a conflict that is already there but hidden.</p>"
+    },
+    {
+      q: "How does King distinguish 'just' from 'unjust' laws?",
+      a: "<p>The clergymen had argued that since the Brown decision was the law, but defying state segregation laws was lawless, King was inconsistent. King answers with a <strong>theory of just and unjust laws</strong>, drawing on Augustine and Aquinas.</p><div class='quote'>One has not only a legal but a moral responsibility to obey just laws. Conversely, one has a moral responsibility to disobey unjust laws. I would agree with St. Augustine that 'an unjust law is no law at all.'</div><p>Tests for an unjust law:</p><ul><li><strong>Aquinas test:</strong> 'Any law that uplifts human personality is just. Any law that degrades human personality is unjust.'</li><li><strong>Buber test:</strong> 'Segregation substitutes an &ldquo;I-it&rdquo; relationship for an &ldquo;I-thou&rdquo; relationship.'</li><li><strong>Tillich test:</strong> 'Sin is separation. Is not segregation an existential expression of man's tragic separation, his awful estrangement, his terrible sinfulness?'</li><li><strong>Procedural test:</strong> A law is unjust if a majority imposes it on a minority that had no role in writing it (e.g., when Black citizens are disenfranchised).</li><li><strong>Application test:</strong> A law is unjust when applied unequally — e.g., parade-permit laws used to suppress only civil rights protests.</li></ul>"
+    },
+    {
+      q: "What is King's famous critique of the 'white moderate'?",
+      a: "<p>This is one of the Letter's most quoted passages — and the one most misread today.</p><div class='quote'>I have almost reached the regrettable conclusion that the Negro's great stumbling block in his stride toward freedom is not the White Citizen's Counciler or the Ku Klux Klanner, but the white moderate, who is more devoted to 'order' than to justice; who prefers a negative peace which is the absence of tension to a positive peace which is the presence of justice; who constantly says: 'I agree with you in the goal you seek, but I cannot agree with your methods of direct action;' who paternalistically believes he can set the timetable for another man's freedom; who lives by a mythical concept of time and who constantly advises the Negro to wait for a 'more convenient season.'</div><p>King argues the white moderate's call for 'gradualism' is more dangerous than overt racism, because it neutralizes the urgency that justice requires. The clergymen who wrote 'A Call for Unity' are precisely such moderates: agreeing in principle with civil rights but objecting to every actual method of achieving them.</p><p>The 'mythical concept of time' is the idea that time itself fixes injustice. King replies that <strong>'time is neutral.'</strong> Without action, it favors the oppressors.</p>"
+    },
+    {
+      q: "What are the 'two opposing forces' King identifies, and where does he position himself between them?",
+      a: "<p>King says the Black community contains two extremes:</p><ul><li><strong>The complacent</strong> — those 'so drained of self-respect and a sense of &ldquo;somebodiness&rdquo;' that they have adjusted to segregation. Includes some middle-class African Americans whose education and economic security insulate them.</li><li><strong>The bitter and hateful</strong> — those who 'have lost faith in America' and have come close to advocating violence. He names the <strong>Nation of Islam (Elijah Muhammad)</strong> as an example.</li></ul><p>King positions himself in <strong>'the more excellent way of love and nonviolent protest.'</strong> If white moderates do not embrace this middle path, he warns, 'millions of Negroes will, out of frustration and despair, seek solace and security in black-nationalist ideologies — a development that would inevitably lead to a frightening racial nightmare.'</p><p>This is, in part, a strategic warning: if the moderate clergymen reject King, they get Malcolm X.</p>"
+    },
+    {
+      q: "What is King's response to being called an 'extremist'?",
+      a: "<p>The clergymen called King's nonviolent direct action 'extreme.' At first he is hurt. Then he reflects:</p><div class='quote'>But as I continued to think about the matter, I gradually gained a measure of satisfaction from the label. Was not Jesus an extremist for love? ... Was not Amos an extremist for justice? ... Was not Paul an extremist for the Christian gospel? ... Was not Martin Luther an extremist? ... So the question is not whether we will be extremists, but what kind of extremists we will be. Will we be extremists for hate or for love? Will we be extremists for the preservation of injustice or for the extension of justice?</div><p>King reframes <em>extremism</em> as a moral category determined by content, not method. He deliberately places himself in a tradition of Jesus, the prophets, Luther, Lincoln, and Jefferson — all 'extremists' in their day.</p>"
+    },
+    {
+      q: "What does King say about the white church and its leadership?",
+      a: "<p>The most painful section of the Letter, for King personally. Writing as a Baptist minister to fellow clergy, he expresses 'sorrow' that Southern white churches and their leadership have either remained silent or actively supported segregation.</p><div class='quote'>I have been so greatly disappointed with the white church and its leadership... In deep disappointment I have wept over the laxity of the church.</div><p>He tells of riding past beautiful Southern churches and asking himself, <em>'Who is their God?'</em></p><p>King contrasts contemporary white clergy with the early Christians, who 'were small in number but big in commitment' and 'rejoiced at being deemed worthy to suffer for what they believed.' Those Christians transformed the Roman Empire; today's church, he says, is 'the archdefender of the status quo.'</p><p>The condemnation is harsh, but King ends with hope: he still 'hopes' the church will 'meet the challenge of this decisive hour.'</p>"
+    },
+    {
+      q: "What is the famous closing passage about hope and brotherhood?",
+      a: "<div class='quote'>One day the South will know that when these disinherited children of God sat down at lunch counters, they were in reality standing up for what is best in the American dream and for the most sacred values in our Judeo-Christian heritage, thereby bringing our nation back to those great wells of democracy which were dug deep by the Founding Fathers in their formulation of the Constitution and the Declaration of Independence.</div><p>And the closing apology / blessing:</p><div class='quote'>If I have said anything in this letter that overstates the truth and indicates an unreasonable impatience, I beg you to forgive me. If I have said anything that understates the truth and indicates my having a patience that allows me to settle for anything less than brotherhood, I beg God to forgive me.</div><p>Then his sign-off:</p><div class='quote'>Yours for the cause of Peace and Brotherhood,<br>Martin Luther King, Jr.</div>"
+    },
+    {
+      q: "How does the Letter from Birmingham Jail connect to other course materials?",
+      a: "<p>This is a frequent synthesis question. The Letter sits at a pivotal node in the course's arc.</p><ul><li><strong>Lincoln (Inaugurals, Gettysburg):</strong> King appeals to the Declaration's promise of equality and to Lincoln's 'new birth of freedom.' He makes himself an heir of Lincoln's reframing of the nation as dedicated to a proposition.</li><li><strong>13th–15th Amendments:</strong> King argues that constitutional rights remain unrealized; the Letter is a demand to make the Reconstruction Amendments effective.</li><li><strong>Plessy:</strong> King's protests target the social system <em>Plessy</em> licensed.</li><li><strong>Brown v. Board:</strong> Decided nine years earlier; King invokes <em>Brown</em> to show the law is on the side of integration.</li><li><strong>Stanton's Declaration of Sentiments:</strong> Like Stanton, King uses the rhetoric and authority of the founding documents to indict the nation for failing its own ideals.</li></ul><p>The Letter is, in effect, a 20th-century reissue of the Declaration of Independence's grievance-and-claim structure.</p>"
+    }
+  ]
+},
+{
+  id: 9,
+  title: "Roe v. Wade (1973) and Dobbs v. Jackson Women's Health (2022)",
+  short: "Roe → Dobbs",
+  blurb: "The 1973 decision that constitutionalized a right to abortion; the 2022 decision that overturned it nearly fifty years later — together, the most consequential reversal in modern American constitutional law.",
+  cards: [
+    {
+      q: "When was Roe v. Wade decided, and what was the vote?",
+      a: "<strong>Date:</strong> January 22, 1973.<br><strong>Vote:</strong> 7–2.<br><strong>Author of opinion:</strong> Justice <strong>Harry Blackmun</strong> (a Nixon appointee).<br><strong>Dissents:</strong> Justices <strong>Byron White</strong> and <strong>William Rehnquist</strong>.<p>Of the seven in the majority, five were Republican appointees. The decision was not seen at the time as the partisan flashpoint it later became.</p><p>It was decided the same day as <em>Doe v. Bolton</em>, a companion case from Georgia that further struck down state procedural restrictions on abortion.</p>"
+    },
+    {
+      q: "Who was 'Jane Roe,' and who was 'Wade'?",
+      a: "<p><strong>'Jane Roe'</strong> was the pseudonym for <strong>Norma McCorvey</strong> (1947–2017), a 22-year-old Texas woman who sought an abortion in 1969 after becoming pregnant for the third time. Texas law allowed abortion only to save the mother's life. McCorvey could not legally obtain an abortion and could not afford to travel out of state. She was put in touch with two young attorneys, <strong>Sarah Weddington</strong> and <strong>Linda Coffee</strong>, who were looking for a plaintiff to challenge the Texas statute.</p><p>McCorvey gave birth and gave the baby up for adoption before the case was decided. She publicly identified herself in 1980. Late in life she became a vocal anti-abortion activist (a transformation that anti-abortion groups celebrated and her former allies disputed).</p><p><strong>Henry Wade</strong> was the District Attorney of Dallas County, Texas — the official defending the state's abortion ban. (The same Henry Wade had earlier prosecuted Jack Ruby for killing Lee Harvey Oswald.)</p>"
+    },
+    {
+      q: "What was the constitutional basis for Roe v. Wade?",
+      a: "<p>Justice Blackmun grounded the right to abortion in a <strong>constitutional right to privacy</strong>. The Constitution does not mention 'privacy,' but the Court had recognized such a right in earlier cases:</p><ul><li><em>Griswold v. Connecticut</em> (1965) — right to use contraceptives, derived from 'penumbras' of the Bill of Rights.</li><li><em>Eisenstadt v. Baird</em> (1972) — extended contraceptive rights to unmarried people.</li></ul><p>Blackmun located the privacy right in the <strong>Due Process Clause of the 14th Amendment</strong> ('No state shall ... deprive any person of life, liberty, or property, without due process of law'). 'Liberty' was read to include personal autonomy in intimate matters.</p><p>He held this right was 'broad enough to encompass a woman's decision whether or not to terminate her pregnancy.' But he also said the right was not absolute — the state had legitimate interests in maternal health and in 'potential life' that grew stronger as pregnancy progressed.</p>"
+    },
+    {
+      q: "What was the trimester framework Roe established?",
+      a: "<p>Blackmun's signature contribution. The Court divided pregnancy into three stages, balancing the woman's right against state interests:</p><ul><li><strong>First trimester (roughly weeks 0–12):</strong> States may not regulate abortion; the decision is between woman and physician.</li><li><strong>Second trimester (weeks 13–28):</strong> States may regulate abortion to protect maternal health (e.g., licensing requirements for clinics).</li><li><strong>Third trimester (after viability — roughly week 28 in 1973):</strong> States may prohibit abortion altogether, except where necessary to protect the mother's life or health.</li></ul><p>The framework was criticized from both sides. Pro-choice advocates thought it gave too much regulatory power; anti-abortion critics said the Court had simply legislated a medical schema with no constitutional basis.</p><p>The framework was modified by <em>Casey</em> in 1992 (next card) and abolished by <em>Dobbs</em> in 2022.</p>"
+    },
+    {
+      q: "What did Planned Parenthood v. Casey (1992) do to Roe?",
+      a: "<strong>Date:</strong> June 29, 1992.<br><strong>Vote:</strong> 5–4 (with a controversial joint opinion by Justices O'Connor, Kennedy, and Souter).<p><em>Casey</em> reaffirmed Roe's 'central holding' — that women have a constitutional right to choose abortion before fetal viability — but replaced the trimester framework with a new test:</p><ul><li><strong>The 'undue burden' standard:</strong> a state regulation is unconstitutional if it 'has the purpose or effect of placing a substantial obstacle in the path of a woman seeking an abortion of a nonviable fetus.'</li></ul><p>This let states impose more restrictions than Roe had allowed (waiting periods, informed-consent requirements, parental-consent laws for minors), as long as they didn't constitute an 'undue burden.'</p><p>The plurality also gave a long meditation on <strong>stare decisis</strong> (respect for precedent), arguing that overturning Roe would damage public trust in the Court. Justice Kennedy in particular emphasized the country's reliance on the Roe framework.</p><p>This <em>Casey</em> defense of stare decisis is the precise argument the Dobbs majority would later reject.</p>"
+    },
+    {
+      q: "When was Dobbs decided, and what was the case about?",
+      a: "<strong>Case:</strong> <em>Dobbs v. Jackson Women's Health Organization</em>.<br><strong>Date:</strong> June 24, 2022.<br><strong>Vote:</strong> 6–3 (on upholding the Mississippi law); <strong>5–4</strong> on overturning Roe outright (Chief Justice Roberts concurred only in the judgment, declining to overturn Roe entirely).<br><strong>Author of majority:</strong> Justice <strong>Samuel Alito</strong>.<p>The case concerned <strong>Mississippi's Gestational Age Act (2018)</strong>, which banned most abortions after <strong>15 weeks</strong> of pregnancy — a clear contradiction of Roe's viability rule (about 24 weeks).</p><p>Mississippi's primary argument was narrow (uphold the 15-week ban as constitutional under <em>Casey</em>'s undue-burden test). But the state also asked the Court to overturn Roe and Casey altogether. The Court took up that broader question.</p>"
+    },
+    {
+      q: "What was Dobbs' core holding?",
+      a: "<p>Justice Alito's majority opinion overturned <em>Roe v. Wade</em> and <em>Planned Parenthood v. Casey</em> in their entirety.</p><p>The reasoning:</p><ul><li><strong>The Constitution does not mention abortion.</strong> Therefore, any right to abortion must be implicit in some other clause.</li><li><strong>The Due Process Clause</strong> protects only those liberties that are <em>'deeply rooted in this Nation's history and tradition'</em> (a test from <em>Washington v. Glucksberg</em>, 1997).</li><li>Abortion was widely criminalized in 1868 when the 14th Amendment was ratified. Therefore, abortion is not 'deeply rooted' in American history.</li><li>Roe was 'egregiously wrong from the start'; <em>Casey</em>'s reaffirmation did not save it.</li><li>Therefore, the Constitution does not protect a right to abortion. The question is returned to <strong>'the people and their elected representatives.'</strong></li></ul><p>Alito's opinion explicitly tries to limit Dobbs to abortion, denying that other rights based on the same Due Process methodology (contraception, same-sex intimacy, same-sex marriage) are at risk.</p>"
+    },
+    {
+      q: "What did Justice Thomas's concurrence say, and why was it controversial?",
+      a: "<p>Justice <strong>Clarence Thomas</strong> wrote a separate concurrence going further than Alito's majority opinion.</p><p>Thomas argued that the Court should reconsider <strong>all</strong> of its 'substantive due process' precedents, naming three specifically:</p><ul><li><em>Griswold v. Connecticut</em> (1965) — right of married couples to use contraceptives.</li><li><em>Lawrence v. Texas</em> (2003) — right of same-sex couples to engage in consensual sexual conduct.</li><li><em>Obergefell v. Hodges</em> (2015) — right of same-sex couples to marry.</li></ul><p>Thomas's concurrence alarmed civil-libertarian and LGBTQ rights advocates because it suggested the same logic that ended Roe could end other rights derived from the Due Process Clause.</p><p>Notably, Thomas did <em>not</em> name <em>Loving v. Virginia</em> (1967), which struck down bans on interracial marriage and which is also a substantive due-process case. Critics noted that Thomas, who is married to a white woman, perhaps had reasons to omit it.</p>"
+    },
+    {
+      q: "What did the dissent in Dobbs argue?",
+      a: "<p>Justices <strong>Stephen Breyer, Sonia Sotomayor, and Elena Kagan</strong> co-wrote a single, fiery joint dissent — unusual in form.</p><p>Their main arguments:</p><ul><li><strong>Stare decisis:</strong> The majority broke 50 years of settled law without justification — exactly what <em>Casey</em> had warned against.</li><li><strong>Women's lives:</strong> 'The Court reverses course today for one reason and one reason only: because the composition of this Court has changed.'</li><li><strong>Slippery slope:</strong> The same reasoning could undo Griswold, Lawrence, Obergefell, and even Loving — Alito's protestations notwithstanding.</li><li><strong>1868 problem:</strong> If 'history and tradition' as of 1868 set the bounds of constitutional rights, women, who had no political voice in 1868, have no claim to bodily autonomy.</li></ul><p>The dissent ends, memorably: <em>'With sorrow — for this Court, but more, for the many millions of American women who have today lost a fundamental constitutional protection — we dissent.'</em></p>"
+    },
+    {
+      q: "What were the immediate political consequences of Dobbs?",
+      a: "<p>The decision returned abortion regulation to the states. Within months:</p><ul><li><strong>'Trigger laws'</strong> in 13 states — laws designed to take effect automatically upon Roe's reversal — banned or severely restricted abortion.</li><li>Total bans took effect in states like Texas, Mississippi, Alabama, Louisiana, Tennessee, Oklahoma, Arkansas, Missouri, North Dakota, South Dakota, Idaho, Kentucky, West Virginia.</li><li>Several states (Kansas, Michigan, Vermont, Ohio) passed ballot measures <strong>protecting</strong> abortion rights — sometimes by surprisingly large margins, including in conservative states.</li><li>Disputes proliferated over interstate travel, mail-order medication abortion (mifepristone), and exceptions for rape, incest, and life of the mother.</li><li>The <strong>2022 midterm elections</strong> showed unexpected Democratic strength in part because of voter backlash to Dobbs.</li></ul><p>Project 2025 (Topic 10) celebrates Dobbs as <em>'the greatest pro-family win in a generation'</em> and proposes federal-level steps to push abortion restrictions further — even as Dobbs purports to leave the issue to states.</p>"
+    },
+    {
+      q: "How does the Roe → Dobbs trajectory illustrate broader course themes?",
+      a: "<p>This is a major synthesis prompt. The arc illustrates several recurring themes of the course:</p><ul><li><strong>The expansion and contraction of constitutional rights.</strong> Just as the Reconstruction Amendments expanded rights (Topic 3) before <em>Plessy</em> contracted them (Topic 5), <em>Roe</em> expanded a right that <em>Dobbs</em> contracted.</li><li><strong>The 14th Amendment's Due Process Clause as an unstable foundation.</strong> The same clause that grounded <em>Brown</em>, <em>Griswold</em>, <em>Roe</em>, and <em>Obergefell</em> turns out to depend on which justices read it.</li><li><strong>Substantive equality vs. formal equality.</strong> Echoes Stanton's complaint (Topic 4) that legal frameworks made by men ignore women's lived realities.</li><li><strong>The Court as political actor.</strong> The 1857 <em>Dred Scott</em> Court was political; the 2022 <em>Dobbs</em> Court is too. Justice Sotomayor's question at oral argument — <em>'Will this institution survive the stench that this creates in the public perception that the Constitution and its reading are just political acts?'</em> — echoes long-running concerns about the Court's legitimacy.</li><li><strong>The role of social movements.</strong> The post-Dobbs landscape, like the post-Brown one, is shaped at least as much by activism, state legislatures, and elections as by Supreme Court doctrine.</li></ul>"
+    }
+  ]
+},
+{
+  id: 10,
+  title: "Foreword to Project 2025: Mandate for Leadership",
+  short: "Project 2025 Foreword",
+  blurb: "Kevin Roberts's 2023 manifesto for the Heritage Foundation's 'Conservative Promise' — a programmatic response to the entire arc of expanding rights covered in this course.",
+  cards: [
+    {
+      q: "What is Project 2025, and who produced it?",
+      a: "<p><strong>Project 2025</strong> (formal title: <em>Mandate for Leadership: The Conservative Promise</em>) is a 920-page policy blueprint published in <strong>April 2023</strong> by the <strong>Heritage Foundation</strong>, a conservative think tank, in coordination with more than 100 partner organizations.</p><p>It was conceived as a transition plan for a future conservative presidency taking office in <strong>January 2025</strong> (i.e., after the November 2024 election). Its 30 chapters propose detailed policy changes for every Cabinet department, White House office, and major federal agency.</p><p>The book has roughly <strong>400 contributors</strong>, including former Trump administration officials, conservative legal scholars, and Heritage staff. The Foreword was written by <strong>Kevin D. Roberts, PhD</strong>, the Heritage Foundation's president.</p>"
+    },
+    {
+      q: "Who is Kevin D. Roberts, and why does the Foreword matter?",
+      a: "<p><strong>Kevin D. Roberts</strong> became president of the Heritage Foundation in October 2021. A historian by training (PhD, University of Texas), he previously led the Texas Public Policy Foundation. He has positioned Heritage as a more militant 'national conservative' organization than its more libertarian Reagan-era identity.</p><p>The Foreword matters because it sets the political and rhetorical frame for the entire 920-page document. It is the part most often cited in public debate. It declares the four 'promises' of the conservative agenda and links them to a sweeping diagnosis of American decline.</p><p>The Foreword is also the text most often paired in political-theory courses with the historical American documents (Declaration of Independence, Lincoln's speeches, MLK's Letter), because it self-consciously invokes that tradition while reaching very different conclusions.</p>"
+    },
+    {
+      q: "What is the historical analogy Roberts uses to frame the Foreword?",
+      a: "<p>Roberts opens by drawing a direct parallel between the present and the late <strong>1970s</strong>:</p><ul><li>1970s: stagflation, gas lines, Iranian hostage crisis, Soviet invasion of Afghanistan; America 'in dire straits.'</li><li>Today (2023): inflation, drug overdoses, perceived cultural collapse, China rising; <em>'an era of division and danger akin to the late 1970s.'</em></li></ul><p>The 1970s parallel sets up the historical model: the original <strong>Mandate for Leadership</strong>, published by Heritage in <strong>January 1981</strong>, the same month Reagan was inaugurated. Heritage claims that <em>'by the end of that year, more than 60 percent of its recommendations had become policy.'</em></p><p>So Project 2025 explicitly markets itself as 'Reagan 2.0' — a playbook for a conservative president to take office and immediately implement.</p>"
+    },
+    {
+      q: "What are the FOUR PROMISES of Project 2025?",
+      a: "<p>The Foreword organizes the entire agenda around four explicit promises:</p><ol><li><strong>Restore the family as the centerpiece of American life and protect our children.</strong></li><li><strong>Dismantle the administrative state and return self-governance to the American people.</strong></li><li><strong>Defend our nation's sovereignty, borders, and bounty against global threats.</strong></li><li><strong>Secure our God-given individual rights to live freely — what our Constitution calls 'the Blessings of Liberty.'</strong></li></ol><p>Memorize these four — they are the structural skeleton of any essay or MCQ on Project 2025. The Foreword devotes one major section to each.</p>"
+    },
+    {
+      q: "What does Promise #1 (Family) include? Specific policies?",
+      a: "<p>Roberts argues that the family is the foundational community of American life and is in 'crisis' (he cites a 40% out-of-wedlock birthrate, '70 percent of black children'). He frames many social problems — poverty, crime, mental illness, addiction, suicide — as downstream of family breakdown.</p><p><strong>Specific policy proposals named in the Foreword:</strong></p><ul><li>Eliminate marriage penalties in welfare programs and the tax code.</li><li>Install work requirements for food stamps.</li><li>Use the tax code to reward family formation and cohesion.</li><li>Delete the terms <strong>'sexual orientation,' 'gender identity' (SOGI), 'diversity, equity, and inclusion' (DEI), 'gender,' 'gender equality,' 'abortion,' 'reproductive health,' 'reproductive rights'</strong> from every federal rule, regulation, contract, grant, and statute.</li><li>Outlaw pornography; classify educators and librarians who 'purvey' it as registered sex offenders.</li><li>Pursue <strong>universal school choice</strong>; cut federal funds from districts that defy parental rights.</li><li>Excise 'critical race theory' and 'gender ideology' from public schools.</li><li>Ban gender-affirming care for minors as 'child abuse.'</li><li>Restrict Big Tech / social media access for children.</li><li>Build on <strong>Dobbs (2022)</strong> with the most aggressive federal protections for the unborn that Congress will support; promote adoption.</li></ul>"
+    },
+    {
+      q: "What is the 'administrative state,' and what does Promise #2 propose?",
+      a: "<p>The <strong>'administrative state'</strong> refers to the policy-making done by federal agencies — EPA, Department of Education, IRS, etc. — under broad authority delegated to them by Congress. Conservative critics argue this delegation transfers legislative power from elected representatives to unaccountable career bureaucrats, violating Article I of the Constitution.</p><p>Roberts argues Congress 'no longer meaningfully budgets, authorizes, or categorizes spending,' having last passed all 12 appropriations bills in 1996. Instead, multitrillion-dollar omnibus bills are passed at deadline.</p><p><strong>Specific proposals in the Foreword:</strong></p><ul><li>Fire 'supposedly un-fireable' career federal civil servants. (This refers to <strong>Schedule F</strong> — a Trump executive order from October 2020 that would have reclassified tens of thousands of career employees as at-will and was rescinded by Biden in 2021. Project 2025 proposes restoring it.)</li><li>'Shutter wasteful and corrupt bureaus and offices.'</li><li>'Muzzle woke propaganda at every level of government.'</li><li>Push Congress to retake legislative power from agencies.</li><li>End 'social experimentation' in the military; refocus on warfighting; treat the Chinese Communist Party as the 'highest priority' threat.</li></ul>"
+    },
+    {
+      q: "What does Promise #3 (Sovereignty / Borders / China) cover?",
+      a: "<p>Promise #3 is the foreign-policy and immigration core of Project 2025. The framing: American 'elites' have betrayed the American people by ceding sovereignty to global institutions, opening the borders, and engaging with hostile powers — chiefly the People's Republic of China.</p><p><strong>Key positions:</strong></p><ul><li>Treat <strong>international organizations and treaties</strong> that 'erode our Constitution' as things to be 'abandoned, not reformed' — naming the UN and EU.</li><li>'End,' not 'mitigate,' illegal immigration. <strong>Seal the border.</strong></li><li>Treat China as a <strong>'totalitarian enemy,'</strong> not a strategic partner. End economic engagement, not rethink it.</li><li>Restore American manufacturing and industrial base.</li><li>Outlaw <strong>Confucius Institutes, TikTok</strong>, and any 'arm of Chinese propaganda and espionage.'</li><li>Strip accreditation and federal funding from universities that take CCP money.</li><li>Pursue <strong>'full-spectrum strategic energy dominance'</strong>: maximize American oil and natural gas production; reframe energy as the 'lifeblood of economic growth' rather than an environmental problem.</li><li>Use energy dominance to 'rebalance power away from dangerous regimes in Russia and the Middle East.'</li></ul>"
+    },
+    {
+      q: "What does Promise #4 (Liberty / 'Blessings of Liberty') cover?",
+      a: "<p>Promise #4 takes its language from the Constitution's preamble — <em>'secure the Blessings of Liberty to ourselves and our Posterity.'</em></p><p>Roberts gives an extended commentary on the Declaration's phrase <strong>'pursuit of Happiness,'</strong> arguing it really means <em>'pursuit of Blessedness'</em> — a religious, virtue-ethics reading. <em>'Our Constitution grants each of us the liberty to do not what we want, but what we ought.'</em></p><p>This sets up a contrast with progressive 'autonomy' framings of liberty.</p><p><strong>Specific proposals:</strong></p><ul><li>Pro-growth economic policies: tax and regulatory reform; antitrust enforcement against corporate monopolies.</li><li>Educational alternatives outside 'woke-dominated' public schools — trade schools, apprenticeships, alternatives to federal student loans.</li><li>Crack down on 'crony capitalism.'</li><li>Defend First Amendment rights against Big Tech censorship, university speech codes, and harassment of donors to conservative causes.</li><li>Treat religious liberty, free speech, and freedom of assembly as 'key components of the American promise.'</li></ul><p>Roberts uses the Korean peninsula nighttime satellite image as a parable of free-market vs. socialist outcomes (lit South vs. dark North).</p>"
+    },
+    {
+      q: "What does Roberts mean by 'the Great Awokening'?",
+      a: "<p><strong>'The Great Awokening'</strong> is a term Roberts uses repeatedly to describe what he sees as a post-2010 cultural revolution led by progressive elites: heightened attention to race, gender, sexual orientation, and identity-based grievance.</p><p>Roberts treats it as a <strong>'totalitarian cult'</strong> rather than a political position. He compares it to 1970s 'radical chic' — but more dangerous because it has captured corporations, universities, federal agencies, and the military.</p><p>The 'Great Awokening' is the umbrella term that links many of the specific targets across the four promises:</p><ul><li>DEI / SOGI in federal agencies.</li><li>'Critical race theory' and 'gender ideology' in schools.</li><li>Pronouns and transgender accommodations in the military and federal workforce.</li><li>'Intersectionality' in foreign aid.</li><li>Corporate ESG (environmental, social, governance) policies.</li></ul><p>Project 2025's first executive task, in this framing, is to 'defang and defund the woke culture warriors who have infiltrated every last institution in America.'</p>"
+    },
+    {
+      q: "What is the 'cheap grace' argument, and where does Roberts get it?",
+      a: "<p>Roberts borrows the term <strong>'cheap grace'</strong> from the German Lutheran theologian <strong>Dietrich Bonhoeffer</strong> (1906–1945), who used it in <em>The Cost of Discipleship</em> (1937) to criticize Christianity that demands no personal sacrifice.</p><p>Roberts repurposes it: progressive elites preach environmentalism, open borders, and racial equity, but personally never bear the costs of those policies. Examples he gives:</p><ul><li>Open-borders advocates whose only direct exposure to immigration is cheaper landscapers and housekeepers.</li><li>Climate activists who fly to conferences on private jets.</li><li>Pandemic politicians (he names <strong>Nancy Pelosi</strong> and <strong>Gavin Newsom</strong>) photographed at salons and restaurants while telling everyone else to stay home.</li></ul><p>The accusation: progressive politics, in Roberts's reading, is <strong>'a means of accumulating power'</strong> for elites, not equalizing outcomes for ordinary people.</p>"
+    },
+    {
+      q: "How does Project 2025 invoke Lincoln, the Founders, and the Constitution?",
+      a: "<p>Roberts repeatedly anchors the document in canonical American sources — and this is what makes it especially relevant to your course.</p><ul><li>He quotes <strong>Reagan</strong>: <em>'Freedom is a fragile thing and it's never more than one generation away from extinction.'</em></li><li>He invokes <strong>Lincoln</strong>'s metaphor of the Declaration as an 'apple of gold' framed by the Constitution (a 'silver frame'). This is from a Lincoln fragment of c. 1861.</li><li>He cites the Declaration's 'all men are created equal' and 'pursuit of Happiness' (recasting the latter as 'Blessedness').</li><li>He treats the <strong>Constitution of 1789</strong> as the standard against which administrative-state delegation is to be judged.</li><li>He calls progressives heirs of Woodrow Wilson — 'Wilsonian hubris,' 'Wilsonian globalism' — placing the Left in a tradition of managerial elite rule.</li></ul><p>This rhetorical strategy parallels Stanton's, MLK's, and Lincoln's own — invoking the founding documents to legitimate a particular political program. The differences lie in <em>what</em> each finds in those documents.</p>"
+    },
+    {
+      q: "How does Project 2025 relate to the rest of the course?",
+      a: "<p>This is the synthesis question. The Foreword is taught last because it self-consciously responds to the historical arc the course has covered.</p><ul><li><strong>vs. Lincoln (Topics 1–2):</strong> Both invoke the Declaration; Lincoln expands its reach to enslaved people, Roberts narrows it to a religiously-defined understanding of family and 'Blessedness.'</li><li><strong>vs. Reconstruction Amendments (Topic 3):</strong> Roberts wants to dismantle 'DEI' programs that build on Equal Protection jurisprudence; critics argue this rolls back the practical effect of the 14th Amendment.</li><li><strong>vs. Stanton / 19th Amendment (Topic 4):</strong> Roberts treats 'gender ideology' as a corruption to be excised; this directly opposes the post-1848 expansion of gender equality.</li><li><strong>vs. Plessy / Brown (Topics 5, 7):</strong> Roberts's strict 'colorblindness' echoes Justice Harlan's <em>Plessy</em> dissent — but is now invoked to argue that race-conscious remedies for past discrimination are themselves unconstitutional.</li><li><strong>vs. Larsen (Topic 6):</strong> The Foreword has nothing analogous to <em>Passing</em>'s account of how race actually works in lived experience; the Foreword treats race almost exclusively as an issue of 'woke ideology' rather than historical structure.</li><li><strong>vs. MLK (Topic 8):</strong> Both texts are jeremiads about American decline addressed to 'fellow citizens.' But MLK indicts the white moderate for delaying justice; Roberts indicts the progressive elite for imposing it. Both claim the mantle of the Founding.</li><li><strong>vs. Roe → Dobbs (Topic 9):</strong> Project 2025 explicitly celebrates Dobbs and proposes federal-level steps to push abortion restrictions further.</li></ul><p>In short: Project 2025 stands as a counter-narrative to most of the rights-expansion arc covered in this course, presenting itself nonetheless as <strong>the</strong> heir to America's founding tradition.</p>"
+    },
+    {
+      q: "What are the key 'big-picture' essay frames for Project 2025?",
+      a: "<p>If you are asked to write an essay on Project 2025, these are the kinds of frames Professor Irlam's syllabus suggests:</p><ul><li><strong>The Foreword as a counter-canon:</strong> How does Roberts re-read the Declaration, Constitution, and Lincoln? Whose Lincoln is this?</li><li><strong>Equality vs. liberty:</strong> The course traces an expansion of equality (Stanton, Reconstruction Amendments, Brown, civil rights). Project 2025 reframes the central American value as 'liberty' — specifically liberty from federal regulation and from cultural pluralism.</li><li><strong>The administrative state debate:</strong> Is the post-New Deal regulatory state constitutional? Roberts and the originalists say no; defenders say it is the only way to govern a modern industrial democracy.</li><li><strong>'Woke' as a political category:</strong> What work does the term do in the Foreword? Does it identify a real phenomenon, or function as a rhetorical container for unrelated critiques?</li><li><strong>Continuities with earlier American conservatism:</strong> How does Roberts relate to Goldwater (1964), Reagan (1981), the Tea Party (2010), and Trumpism (2016–)? The 1979 origin story he tells locates the movement in a particular Reagan-era genealogy.</li><li><strong>Comparative historical reading:</strong> How does the Foreword compare with the 'Call for Unity' that MLK answered in 1963? Both call for restraint against perceived excess; both invoke moderation as a virtue. King's response is a model template for any critical engagement with the Foreword.</li></ul>"
+    }
+  ]
+}
+];
+
+// ============================================================
+//  APP STATE & LOGIC
+// ============================================================
+let currentTopic = 0;
+let currentCard = 0;
+let isFlipped = false;
+let indexOpen = false;
+
+function buildTOC() {
+  const list = document.getElementById('toc-list');
+  list.innerHTML = TOPICS.map((t, i) =>
+    `<li><button onclick="goToTopic(${i})" id="toc-${i}">${t.short}</button></li>`
+  ).join('');
+}
+
+function render() {
+  const t = TOPICS[currentTopic];
+  const c = t.cards[currentCard];
+
+  document.getElementById('topic-num').textContent = `Topic ${String(t.id).padStart(2, '0')} · ${t.cards.length} cards`;
+  document.getElementById('topic-title').textContent = t.title;
+  document.getElementById('topic-blurb').textContent = t.blurb;
+
+  document.getElementById('front-text').innerHTML =
+    "<span class='q-mark'>Question</span>" + c.q;
+  document.getElementById('back-text').innerHTML = c.a;
+
+  document.getElementById('card-num').textContent = currentCard + 1;
+  document.getElementById('card-total').textContent = t.cards.length;
+  document.getElementById('card-pos-front').textContent = `${currentCard + 1} / ${t.cards.length}`;
+  document.getElementById('card-pos-back').textContent = `${currentCard + 1} / ${t.cards.length}`;
+
+  // Reset flip
+  document.getElementById('card').classList.remove('flipped');
+  isFlipped = false;
+
+  // Buttons
+  document.getElementById('prev-btn').disabled = (currentTopic === 0 && currentCard === 0);
+  document.getElementById('next-btn').disabled =
+    (currentTopic === TOPICS.length - 1 && currentCard === t.cards.length - 1);
+
+  // TOC active
+  document.querySelectorAll('nav.toc button').forEach(b => b.classList.remove('active'));
+  const activeBtn = document.getElementById(`toc-${currentTopic}`);
+  if (activeBtn) activeBtn.classList.add('active');
+
+  // Scroll up
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Refresh index if open
+  if (indexOpen) renderIndex();
+}
+
+function flip() {
+  isFlipped = !isFlipped;
+  document.getElementById('card').classList.toggle('flipped');
+}
+
+function next() {
+  const t = TOPICS[currentTopic];
+  if (currentCard < t.cards.length - 1) {
+    currentCard++;
+  } else if (currentTopic < TOPICS.length - 1) {
+    currentTopic++;
+    currentCard = 0;
+  } else {
+    return;
+  }
+  render();
+}
+
+function prev() {
+  if (currentCard > 0) {
+    currentCard--;
+  } else if (currentTopic > 0) {
+    currentTopic--;
+    currentCard = TOPICS[currentTopic].cards.length - 1;
+  } else {
+    return;
+  }
+  render();
+}
+
+function goToTopic(i) {
+  currentTopic = i;
+  currentCard = 0;
+  render();
+}
+
+function toggleIndex() {
+  indexOpen = !indexOpen;
+  const view = document.getElementById('index-view');
+  const btn = document.getElementById('index-btn');
+  view.classList.toggle('show', indexOpen);
+  btn.textContent = indexOpen ? 'Hide all Q&A on this topic' : 'Show all Q&A on this topic';
+  if (indexOpen) renderIndex();
+}
+
+function renderIndex() {
+  const t = TOPICS[currentTopic];
+  const view = document.getElementById('index-view');
+  view.innerHTML = t.cards.map((c, i) => `
+    <div class="ix-card" onclick="jumpTo(${i})">
+      <div class="ix-num">Q${String(i + 1).padStart(2, '0')}</div>
+      <div>
+        <div class="ix-q">${c.q}</div>
+        <div class="ix-a">${c.a.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').slice(0, 220)}…</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function jumpTo(i) {
+  currentCard = i;
+  indexOpen = false;
+  document.getElementById('index-view').classList.remove('show');
+  document.getElementById('index-btn').textContent = 'Show all Q&A on this topic';
+  render();
+}
+
+// Keyboard
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') { next(); e.preventDefault(); }
+  else if (e.key === 'ArrowLeft') { prev(); e.preventDefault(); }
+  else if (e.key === ' ') { flip(); e.preventDefault(); }
+});
+
+buildTOC();
+render();
+</script>
+</body>
+</html>
